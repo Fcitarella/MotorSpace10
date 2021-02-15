@@ -26,6 +26,7 @@ public class AggiuntaProdottoServlet extends HttpServlet {
         Utente utente = (Utente) request.getSession().getAttribute("utente");
         if (utente == null || !utente.getAdmin()) {
             throw new MyServletException("Utente non autorizzato");
+            //prova github
         }
         List<Categoria> categorie = (List<Categoria>) getServletContext().getAttribute("categorie");
         String idStr = request.getParameter("idStr");
