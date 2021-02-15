@@ -1,5 +1,6 @@
 package ServletTest;
 
+import Servlet.MyServletException;
 import Servlet.RegistrazioneServlet;
 import model.Utente;
 import model.UtenteDAO;
@@ -38,7 +39,7 @@ public class RegistrazioneServletTest {
     @Mock
     RequestDispatcher rd;
     @InjectMocks
-    RegistrazioneServlet registrazioneServlet = new RegistrazioneServlet();
+    RegistrazioneServlet registrazioneServlet;
 
     @BeforeEach
     public void setup() throws FileNotFoundException, SQLException {
@@ -52,16 +53,18 @@ public class RegistrazioneServletTest {
 
     @Test
     void testPost() throws Exception {
+       registrazioneServlet = new RegistrazioneServlet();
         when(request.getSession()).thenReturn(session);
+
         when(request.getParameter("nome")).thenReturn("Raffaele");
-        when(request.getParameter("username")).thenReturn("rafchia98");
+        when(request.getParameter("username")).thenReturn("Rafchia98");
         when(request.getParameter("cognome")).thenReturn("Chiarolanza");
         when(request.getParameter("email")).thenReturn("chiarolanza15@gmail.com");
         when(request.getParameter("password")).thenReturn("Raffaelechiarolanza14");
         when(request.getParameter("passwordConferma")).thenReturn("Raffaelechiarolanza14");
-        when(request.getParameter("nascita")).thenReturn("01/01/1998");
+        when(request.getParameter("nascita")).thenReturn("1998/01/01");
         when(request.getRequestDispatcher("Home")).thenReturn(rd);
-        registrazioneServlet.doPost(request, response);
+        registrazioneServlet.doGet(request, response);
         Optional<Utente> utente = Optional.ofNullable(new UtenteDAO().doRetrieveByUsername("rafchia98"));
         assertTrue(utente.isPresent());
     }

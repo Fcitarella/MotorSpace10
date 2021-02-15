@@ -26,24 +26,23 @@ public class AggiuntaProdottoServlet extends HttpServlet {
         Utente utente = (Utente) request.getSession().getAttribute("utente");
         if (utente == null || !utente.getAdmin()) {
             throw new MyServletException("Utente non autorizzato");
-            //prova github
+
         }
-        List<Categoria> categorie = (List<Categoria>) getServletContext().getAttribute("categorie");
         String idStr = request.getParameter("idStr");
         if (!(idStr!= null && idStr.length() >= 3 && idStr.length()<=10 && idStr.matches("^[0-9]+$"))) {
             throw new MyServletException("Id non valido.");
         }
         String nome = request.getParameter("nome");
         if (!(nome.matches("([ a-zA-Z]{3,32})"))) {
-            throw new MyServletException("Username non valido.");
+            throw new MyServletException("Nome non valido.");
         }
         String descrizione = request.getParameter("descrizione");
-        if (!(descrizione != null && descrizione.trim().length() > 0 && descrizione.trim().length()<=128 && descrizione.matches("^[ a-zA-Z\u00C0-\u00ff]+$"))) {
-            throw new MyServletException("Nome non valido.");
+        if (!(descrizione != null && descrizione.trim().length() > 0 && descrizione.trim().length()<=128 && descrizione.matches("[ a-zA-Z]+$"))) {
+            throw new MyServletException("Descrizione non valida.");
         }
         String marca = request.getParameter("marca");
-        if (!(marca != null && marca.trim().length() > 0 && marca.trim().length()<=32 && marca.matches("^[ a-zA-Z\u00C0-\u00ff]+$"))) {
-            throw new MyServletException("Nome non valido.");
+        if (!(marca != null && marca.trim().length() > 3 && marca.trim().length()<=32 && marca.matches("[ a-zA-Z]+$"))) {
+            throw new MyServletException("Marca non valida.");
         }
         String prezzo = request.getParameter("prezzo");
 

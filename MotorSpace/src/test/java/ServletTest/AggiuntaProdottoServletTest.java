@@ -59,207 +59,146 @@ public class AggiuntaProdottoServletTest {
     {
         aggiuntaProdottoServlet = new AggiuntaProdottoServlet();
         when(request.getSession()).thenReturn(session);
-        when(session.getAttribute("utente")).thenReturn("Pasquae88");
+
+        when(session.getAttribute("utente")).thenReturn(new UtenteDAO().doRetrieveByUsername("adminCatalogo"));
         when(request.getParameter("nome")).thenReturn("Casco");
-        when(request.getParameter("id")).thenReturn("NIEN3DF923");
+        when(request.getParameter("idStr")).thenReturn("0000000013");
         when(request.getParameter("descrizione")).thenReturn("Un casco sfizioso");
         when(request.getParameter("prezzo")).thenReturn("45");
         when(request.getParameter("marca")).thenReturn("Pirelli");
-        when(request.getParameter("categoria")).thenReturn("casco");
+        when(request.getParameter("addCategoria")).thenReturn("1");
         when(request.getRequestDispatcher("aggiuntaprodotto.jsp")).thenReturn(rd);
         aggiuntaProdottoServlet.doPost(request,response);
-        Optional<Prodotto> prodotto = Optional.ofNullable(new ProdottoDAO().doRetrieveById("NIEN3DF923"));
+        Optional<Prodotto> prodotto = Optional.ofNullable(new ProdottoDAO().doRetrieveById("0000000013"));
         assertTrue(prodotto.isPresent());
     }
     @Test
     void metodoFailuerNomeLunghezza() throws Exception
     {
         aggiuntaProdottoServlet = new AggiuntaProdottoServlet();
-
         when(request.getSession()).thenReturn(session);
-        when(session.getAttribute("utente")).thenReturn("Pasquae88");
-        when(request.getParameter("nome")).thenReturn("ed");
-        when(request.getParameter("id")).thenReturn("NIEN3DF923");
-        when(request.getParameter("descrizione")).thenReturn("Un casco sfizioso");
-        when(request.getParameter("prezzo")).thenReturn("45");
-        when(request.getParameter("marca")).thenReturn("Pirelli");
-        when(request.getParameter("categoria")).thenReturn("casco");
-        when(request.getRequestDispatcher("Home")).thenReturn(rd);
+
+        when(session.getAttribute("utente")).thenReturn(new UtenteDAO().doRetrieveByUsername("adminCatalogo"));
+        when(request.getParameter("nome")).thenReturn("Ca");
+        when(request.getParameter("idStr")).thenReturn("0000000013");
         Exception thrown = Assertions.assertThrows(ServletException.class, () -> {
             aggiuntaProdottoServlet.doPost(request, response);
         });
-        assertTrue(thrown.getMessage().contains("Lunghezza nome non valida"));
+        assertTrue(thrown.getMessage().contains("Nome non valido."));
     }
 
     @Test
     void metodoFailureNomeFormato() throws Exception
     {
+        aggiuntaProdottoServlet = new AggiuntaProdottoServlet();
         when(request.getSession()).thenReturn(session);
-        when(request.getParameter("nome")).thenReturn("casco@12");
-        when(request.getParameter("id")).thenReturn("NIEN3DF923");
-        when(request.getParameter("descrizione")).thenReturn("Un casco sfizioso");
-        when(request.getParameter("prezzo")).thenReturn("45");
-        when(request.getParameter("marca")).thenReturn("Pirelli");
-        when(request.getParameter("categoria")).thenReturn("casco");
-        when(request.getRequestDispatcher("Home")).thenReturn(rd);
+
+        when(session.getAttribute("utente")).thenReturn(new UtenteDAO().doRetrieveByUsername("adminCatalogo"));
+        when(request.getParameter("nome")).thenReturn("Casco@@");
+        when(request.getParameter("idStr")).thenReturn("0000000013");
         Exception thrown = Assertions.assertThrows(ServletException.class, () -> {
             aggiuntaProdottoServlet.doPost(request, response);
         });
-        assertTrue(thrown.getMessage().contains("Formato nome non valido"));
+        assertTrue(thrown.getMessage().contains("Nome non valido."));
     }
 
-    @Test
-    void metodoFailureCategoriaLunghezza()throws Exception
-    {
-        when(request.getSession()).thenReturn(session);
-        when(request.getParameter("nome")).thenReturn("Casco837");
-        when(request.getParameter("id")).thenReturn("NIEN3DF923");
-        when(request.getParameter("descrizione")).thenReturn("Un casco sfizioso");
-        when(request.getParameter("prezzo")).thenReturn("45");
-        when(request.getParameter("marca")).thenReturn("Pirelli");
-        when(request.getParameter("categoria")).thenReturn("ca");
-        when(request.getRequestDispatcher("Home")).thenReturn(rd);
-        Exception thrown = Assertions.assertThrows(ServletException.class, () -> {
-            aggiuntaProdottoServlet.doPost(request, response);
-        });
-        assertTrue(thrown.getMessage().contains("Lunghezza categoria non valida"));
-    }
 
-    @Test
-    void metodoFailureCategoriaFormato() throws Exception
-    {
-        when(request.getSession()).thenReturn(session);
-        when(request.getParameter("nome")).thenReturn("Casco837");
-        when(request.getParameter("id")).thenReturn("NIEN3DF923");
-        when(request.getParameter("descrizione")).thenReturn("Un casco sfizioso");
-        when(request.getParameter("prezzo")).thenReturn("45");
-        when(request.getParameter("marca")).thenReturn("Pirelli");
-        when(request.getParameter("categoria")).thenReturn("casco!");
-        when(request.getRequestDispatcher("Home")).thenReturn(rd);
-        Exception thrown = Assertions.assertThrows(ServletException.class, () -> {
-            aggiuntaProdottoServlet.doPost(request, response);
-        });
-        assertTrue(thrown.getMessage().contains("Formato categoria non valido"));
-    }
+
+
 
     @Test
     void metodoFailureDescrizioneLunghezza() throws Exception
     {
+        aggiuntaProdottoServlet = new AggiuntaProdottoServlet();
         when(request.getSession()).thenReturn(session);
-        when(request.getParameter("nome")).thenReturn("Casco837");
-        when(request.getParameter("id")).thenReturn("NIEN3DF923");
-        when(request.getParameter("descrizione")).thenReturn("w");
-        when(request.getParameter("prezzo")).thenReturn("45");
-        when(request.getParameter("marca")).thenReturn("Pirelli");
-        when(request.getParameter("categoria")).thenReturn("casco");
-        when(request.getRequestDispatcher("Home")).thenReturn(rd);
+
+        when(session.getAttribute("utente")).thenReturn(new UtenteDAO().doRetrieveByUsername("adminCatalogo"));
+        when(request.getParameter("nome")).thenReturn("Casco");
+        when(request.getParameter("idStr")).thenReturn("0000000013");
+        when(request.getParameter("descrizione")).thenReturn("");
         Exception thrown = Assertions.assertThrows(ServletException.class, () -> {
             aggiuntaProdottoServlet.doPost(request, response);
         });
-        assertTrue(thrown.getMessage().contains("Lunghezza descrizione non valida"));
+        assertTrue(thrown.getMessage().contains("Descrizione non valida."));
     }
 
     @Test
     void metodoFailureDescrizione() throws Exception
     {
+        aggiuntaProdottoServlet = new AggiuntaProdottoServlet();
         when(request.getSession()).thenReturn(session);
-        when(request.getParameter("nome")).thenReturn("Casco837");
-        when(request.getParameter("id")).thenReturn("NIEN3DF923");
-        when(request.getParameter("descrizione")).thenReturn("Un casco sfizioso@@@");
-        when(request.getParameter("prezzo")).thenReturn("45");
-        when(request.getParameter("marca")).thenReturn("Pirelli");
-        when(request.getParameter("categoria")).thenReturn("casco");
-        when(request.getRequestDispatcher("Home")).thenReturn(rd);
+
+        when(session.getAttribute("utente")).thenReturn(new UtenteDAO().doRetrieveByUsername("adminCatalogo"));
+        when(request.getParameter("nome")).thenReturn("Casco");
+        when(request.getParameter("idStr")).thenReturn("0000000013");
+        when(request.getParameter("descrizione")).thenReturn("###");
         Exception thrown = Assertions.assertThrows(ServletException.class, () -> {
             aggiuntaProdottoServlet.doPost(request, response);
         });
-        assertTrue(thrown.getMessage().contains("Formato descrizione non valido"));
+        assertTrue(thrown.getMessage().contains("Descrizione non valida."));
     }
 
     @Test
     void metodoFailureLunghezzaCodice() throws Exception
     {
         when(request.getSession()).thenReturn(session);
-        when(request.getParameter("nome")).thenReturn("Casco837");
-        when(request.getParameter("id")).thenReturn("N23ift");
-        when(request.getParameter("descrizione")).thenReturn("Un casco sfizioso");
-        when(request.getParameter("prezzo")).thenReturn("45");
-        when(request.getParameter("marca")).thenReturn("Pirelli");
-        when(request.getParameter("categoria")).thenReturn("casco");
-        when(request.getRequestDispatcher("Home")).thenReturn(rd);
+        when(session.getAttribute("utente")).thenReturn(new UtenteDAO().doRetrieveByUsername("adminCatalogo"));
+        when(request.getParameter("idStr")).thenReturn("12");
+
         Exception thrown = Assertions.assertThrows(ServletException.class, () -> {
             aggiuntaProdottoServlet.doPost(request, response);
         });
-        assertTrue(thrown.getMessage().contains("Lunghezza codice non valida"));
+        assertTrue(thrown.getMessage().contains("Id non valido."));
     }
 
     @Test
     void metodoFailureFormatoCodice () throws Exception
     {
         when(request.getSession()).thenReturn(session);
-        when(request.getParameter("nome")).thenReturn("Casco837");
-        when(request.getParameter("id")).thenReturn("Dfb!”£$!wq");
-        when(request.getParameter("descrizione")).thenReturn("Un casco sfizioso");
-        when(request.getParameter("prezzo")).thenReturn("45");
-        when(request.getParameter("marca")).thenReturn("Pirelli");
-        when(request.getParameter("categoria")).thenReturn("casco");
-        when(request.getRequestDispatcher("Home")).thenReturn(rd);
+        when(session.getAttribute("utente")).thenReturn(new UtenteDAO().doRetrieveByUsername("adminCatalogo"));
+        when(request.getParameter("idStr")).thenReturn("12N");
+
         Exception thrown = Assertions.assertThrows(ServletException.class, () -> {
             aggiuntaProdottoServlet.doPost(request, response);
         });
-        assertTrue(thrown.getMessage().contains("Formato codice non valido"));
+        assertTrue(thrown.getMessage().contains("Id non valido."));
     }
 
     @Test
     void metodoFailureLunghezzaMarca() throws Exception
     {
+        aggiuntaProdottoServlet = new AggiuntaProdottoServlet();
         when(request.getSession()).thenReturn(session);
-        when(request.getParameter("nome")).thenReturn("Casco837");
-        when(request.getParameter("id")).thenReturn("NIEN3DF923");
+
+        when(session.getAttribute("utente")).thenReturn(new UtenteDAO().doRetrieveByUsername("adminCatalogo"));
+        when(request.getParameter("nome")).thenReturn("Casco");
+        when(request.getParameter("idStr")).thenReturn("0000000013");
         when(request.getParameter("descrizione")).thenReturn("Un casco sfizioso");
-        when(request.getParameter("prezzo")).thenReturn("45");
         when(request.getParameter("marca")).thenReturn("Pi");
-        when(request.getParameter("categoria")).thenReturn("casco");
-        when(request.getRequestDispatcher("Home")).thenReturn(rd);
         Exception thrown = Assertions.assertThrows(ServletException.class, () -> {
             aggiuntaProdottoServlet.doPost(request, response);
         });
-        assertTrue(thrown.getMessage().contains("Lunghezza marca non valida"));
+        assertTrue(thrown.getMessage().contains("Marca non valida."));
     }
 
     @Test
     void metodoFailureFormatoMarca() throws Exception
     {
+        aggiuntaProdottoServlet = new AggiuntaProdottoServlet();
         when(request.getSession()).thenReturn(session);
-        when(request.getParameter("nome")).thenReturn("Casco837");
-        when(request.getParameter("id")).thenReturn("NIEN3DF923");
+
+        when(session.getAttribute("utente")).thenReturn(new UtenteDAO().doRetrieveByUsername("adminCatalogo"));
+        when(request.getParameter("nome")).thenReturn("Casco");
+        when(request.getParameter("idStr")).thenReturn("0000000013");
         when(request.getParameter("descrizione")).thenReturn("Un casco sfizioso");
-        when(request.getParameter("prezzo")).thenReturn("45");
-        when(request.getParameter("marca")).thenReturn("Pirelli!");
-        when(request.getParameter("categoria")).thenReturn("casco");
-        when(request.getRequestDispatcher("Home")).thenReturn(rd);
+        when(request.getParameter("marca")).thenReturn("Pi@@");
         Exception thrown = Assertions.assertThrows(ServletException.class, () -> {
             aggiuntaProdottoServlet.doPost(request, response);
         });
-        assertTrue(thrown.getMessage().contains("Formato marca non valido"));
+        assertTrue(thrown.getMessage().contains("Marca non valida."));
     }
 
 
-    @Test
-    void metodoFailureFormatoPrezzo() throws Exception
-    {
-        when(request.getSession()).thenReturn(session);
-        when(request.getParameter("nome")).thenReturn("Casco837");
-        when(request.getParameter("id")).thenReturn("NIEN3DF923");
-        when(request.getParameter("descrizione")).thenReturn("Un casco sfizioso");
-        when(request.getParameter("prezzo")).thenReturn("-2");
-        when(request.getParameter("marca")).thenReturn("Pirelli");
-        when(request.getParameter("categoria")).thenReturn("casco");
-        when(request.getRequestDispatcher("Home")).thenReturn(rd);
-        Exception thrown = Assertions.assertThrows(ServletException.class, () -> {
-            aggiuntaProdottoServlet.doPost(request, response);
-        });
-        assertTrue(thrown.getMessage().contains("Formato prezzo non valido"));
-    }
+
 
 }

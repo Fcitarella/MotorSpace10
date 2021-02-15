@@ -52,25 +52,23 @@ public class LoginServletTest {
     @Test
      void testPost()throws Exception{
         when(request.getSession()).thenReturn(session);
-        when(request.getParameter("username")).thenReturn("AleBarbados");
-        when(request.getParameter("password")).thenReturn("Ciaone55");
+        when(request.getParameter("username")).thenReturn("carmelo45");
+        when(request.getParameter("password")).thenReturn("napoli1980");
         assertDoesNotThrow (() -> loginServlet.doPost(request,response));
     }
     @Test
     void testPostUsernameErrato() throws Exception{
-        when(request.getSession()).thenReturn(session);
-        when(request.getParameter("username")).thenReturn("AleBarbadoss");
-        when(request.getParameter("password")).thenReturn("Ciaone55");
+        when(request.getParameter("username")).thenReturn("carmelo5");
+        when(request.getParameter("password")).thenReturn("napoli1980");
         Exception thrown = assertThrows(ServletException.class, () ->{
-            loginServlet.doPost(request,response);
-        });
+            loginServlet.doPost(request,response);        });
         assertTrue(thrown.getMessage().contains("Username e/o password non validi."));
     }
     @Test
      void testPostPasswordErrato() throws Exception{
-        when(request.getSession()).thenReturn(session);
-        when(request.getParameter("username")).thenReturn("AleBarbadoss");
-        when(request.getParameter("password")).thenReturn("Ciaane55");
+
+        when(request.getParameter("username")).thenReturn("carmelo45");
+        when(request.getParameter("password")).thenReturn("napoli");
         Exception thrown = assertThrows(ServletException.class, () ->{
             loginServlet.doPost(request,response);
         });

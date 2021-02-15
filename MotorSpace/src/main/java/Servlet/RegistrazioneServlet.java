@@ -19,7 +19,7 @@ public class RegistrazioneServlet extends HttpServlet {
             throw new MyServletException("Utente loggato");
         }
         String username = request.getParameter("username");
-        if (!(username != null && username.length() >= 6 && username.matches("^[0-9a-zA-Z]+$"))) {
+        if (!(username != null && username.length() >= 6 && username.matches("([0-9a-zA-Z])"))) {
             throw new MyServletException("Username non valido.");
         }
 
@@ -35,15 +35,15 @@ public class RegistrazioneServlet extends HttpServlet {
         }
 
         String nome = request.getParameter("nome");
-        if (!(nome != null && nome.trim().length() > 0 && nome.matches("^[ a-zA-Z\u00C0-\u00ff]+$"))) {
+        if (!(nome != null && nome.trim().length() > 0 && nome.matches("([a-zA-Z])"))) {
             throw new MyServletException("Nome non valido.");
         }
         String cognome = request.getParameter("cognome");
-        if (!(cognome != null && cognome.trim().length() > 0 && cognome.matches("^[ a-zA-Z\u00C0-\u00ff]+$"))) {
+        if (!(cognome != null && cognome.trim().length() > 0 && cognome.matches("[ a-zA-Z]"))) {
             throw new MyServletException("Nome non valido.");
         }
         String email = request.getParameter("email");
-        if (!(email != null && email.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w+)+$"))) {
+        if (!(email != null && email.matches("\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w+)"))) {
             throw new MyServletException("Email non valida.");
         }
         String nascitastr = request.getParameter("nascita");
