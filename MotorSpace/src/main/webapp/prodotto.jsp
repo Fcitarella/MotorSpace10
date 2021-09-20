@@ -15,7 +15,7 @@
     ${prodotto.descrizione}
 </div>
 <div col="3/3">
-    <c:if test="${utente.admin}">
+    <c:if test="${Amministratore != null}">
         <form action="AdminProdotto" method="post">
             <input type="hidden" name="id" value="${prodotto.id}">
             <input type="submit" value="modifica">

@@ -3,7 +3,7 @@ package model;
 import java.util.Objects;
 
 public class Prodotto {
-    private String id;
+    private int id;
     private String nome;
     private String descrizione;
     private float prezzo;
@@ -38,11 +38,11 @@ public class Prodotto {
         return Objects.hash(id, nome, descrizione, prezzo);
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

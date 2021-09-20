@@ -1,4 +1,4 @@
-package DAOTest;
+/*package DAOTest;
 
 import model.Prodotto;
 import model.ProdottoDAO;
@@ -116,3 +116,4 @@ public class ProdottoDAOTest {
 
 
 }
+*/

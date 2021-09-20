@@ -43,7 +43,7 @@ public class CarrelloServlet extends HttpServlet {
                 if (setNumStr!=null){
                     int setNum=Integer.parseInt(setNumStr);
                     if(setNum <= 0){
-                        carrello.remove(prodIdStr);
+                        carrello.remove(prodId);
                     }else {
                         Carrello.ProdottoQuantità prodQuant= carrello.get(prodId);
                         if(prodQuant != null){

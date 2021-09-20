@@ -62,7 +62,7 @@ public class Carrello {
     public void put(Prodotto prodotto, int quantità) {
         prodotti.put(Integer.valueOf(prodotto.getId()), new ProdottoQuantità(prodotto, quantità));
     }
-    public ProdottoQuantità remove(String prodId){
+    public ProdottoQuantità remove(int prodId){
         return prodotti.remove(prodId);
     }
 

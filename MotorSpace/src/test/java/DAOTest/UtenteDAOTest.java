@@ -1,4 +1,4 @@
-package DAOTest;
+/*package DAOTest;
 
 import model.ProdottoDAO;
 import model.Utente;
@@ -37,12 +37,11 @@ public class UtenteDAOTest {
         utente.setNome("Giovanni");
         utente.setCognome("Verdi");
         utente.setNascita(new Date(new java.util.Date().getTime()));
-        utente.setAdmin(false);
         utenteDAO.doSave(utente);
         assertNotNull(utenteDAO.doRetrieveByUsername("Camillo"),"Deve aggiungere l'utente al database");
     }
 
-   /* @Test
+    @Test
     public void doUpdateTest() throws SQLExcpetion{
         Utente utente = new Utente();
         utente.setNome("Mario");
@@ -51,7 +50,7 @@ public class UtenteDAOTest {
         utente.setPassword("Ciaone5!");
         utenteDAO.doUpdate(utente);
         assertEquals("Mario",utenteDAO.doRetrieveByUsername("chungus"),"Deve modificare l'utente");
-    }*/
+    }
     @Test
     public void doRetrieveByUsernameTest()
     {
@@ -73,4 +72,4 @@ public class UtenteDAOTest {
         assertNull(utenteDAO.doRetrieveByUsernamePassword("ci@@@","pas12"),"Non deve restituire L'utente");
     }
 
-}
+}*/

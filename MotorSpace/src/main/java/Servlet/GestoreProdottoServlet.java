@@ -1,9 +1,6 @@
 package Servlet;
 
-import model.Categoria;
-import model.Prodotto;
-import model.ProdottoDAO;
-import model.Utente;
+import model.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -20,8 +17,8 @@ public class GestoreProdottoServlet extends HttpServlet {
     private final ProdottoDAO prodottoDAO = new ProdottoDAO();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Utente utente = (Utente) request.getSession().getAttribute("utente");
-        if(utente == null || !utente.getAdmin()) {
+        Amministratore amministratore = (Amministratore) request.getSession().getAttribute("amministratore");
+        if(amministratore == null ) {
             throw new MyServletException("Utente non autorizzato");
         }
         String idStr = request.getParameter("id");
@@ -39,7 +36,8 @@ public class GestoreProdottoServlet extends HttpServlet {
                 String categoria = request.getParameter("addCategoria");
                 if(nome != null && descrizione != null && marca != null && prezzo != null && categoria!=null){
                     prodotto = new Prodotto();
-                    prodotto.setId(idStr);
+                    int id= Integer.parseInt(idStr);
+                    prodotto.setId(id);
                     prodotto.setNome(nome);
                     prodotto.setDescrizione(descrizione);
                     prodotto.setMarca(marca);

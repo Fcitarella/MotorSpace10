@@ -17,7 +17,7 @@ public class LineaOrdineDAO {
             while (rs.next()){
                 LineaOrdine l = new LineaOrdine();
                 l.setIdOrdine(ordine);
-                l.setIdProdotto(rs.getString(1));
+                l.setIdProdotto(rs.getInt(1));
                 l.setQuantità(rs.getInt(2));
                 l.setPrezzoUnitario(rs.getFloat(3));
                 Linee.add(l);
@@ -32,7 +32,7 @@ public class LineaOrdineDAO {
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("INSERT INTO lineadordine(lineadordine.ordine, lineadordine.prodotto, lineadordine.qt, lineadordine.prezzounitario) VALUES (?,?,?,?)");
             ps.setInt(1,l.getIdOrdine());
-            ps.setString(2,l.getIdProdotto());
+            ps.setInt(2,l.getIdProdotto());
             ps.setInt(3,l.getQuantità());
             ps.setFloat(4,l.getPrezzoUnitario());
             if(ps.executeUpdate() != 1){

@@ -19,56 +19,78 @@
 </head>
 <body>
 <nav><!-- use fx attribute for fixed positioning -->
+
     <label>
-        <header>
-            <a href="Home"><img src="img/NewLogo.png">MotorSpace</a>
-        </header>
+
 
         <ul>
-            <li><form action="RicercaServlet" method="get" >
-                <input type="text" name="q" ricerca="ricerca-datalist" placeholder="Ricerca" onkeyup="ricerca{this.value}" value="<c:out value ="${param.q}"/>">
-                <datalist id="ricerca-datalist"></datalist>
-            </form>
-            </li>
-            <li><a href="Home">Home</a></li>
-            <li>
-                <a>Categorie</a>
+            <div>
+                <a href="Home"><img src="img/logo_small_1.png"></a>
+            </div>
+        <!-- Caricamento delle varie categorie di prodotti all'interno dell'header della home-->
+           <li>
+               <a>Vestiario</a>
                 <menu>
-                    <c:forEach items="${categorie}" var="categorie">
+                    <c:forEach items="${categorie1}" var="categorie1">
                         <menuitem>
-                            <a href="Categoria?id=<c:out value="${categorie.id}"/>"><c:out
-                                    value="${categorie.nome}" /></a></menuitem>
+                            <a href="Categoria?id=<c:out value="${categorie1.id}"/>"><c:out
+                            value="${categorie1.nome}" /></a>
+                        </menuitem>
+                    </c:forEach>
+                </menu>
+           </li>
+            <li>
+                <a>Parti Di Ricambio</a>
+                <menu>
+                    <c:forEach items="${categorie2}" var="categorie2">
+                        <menuitem>
+                            <a href="CategoriaParti?id=<c:out value="${categorie2.id}"/>"><c:out
+                                    value="${categorie2.nome}" /></a>
+                        </menuitem>
                     </c:forEach>
                 </menu>
             </li>
-            <li><a href="Carrello">Carrello</a> </li>
+            <li>
+                <a>Accessori Moto</a>
+                <menu>
+                    <c:forEach items="${categorie3}" var="categorie3">
+                        <menuitem>
+                            <a href="CategoriaAccessori?id=<c:out value="${categorie3.id}"/>"><c:out
+                                    value="${categorie3.nome}" /></a>
+                        </menuitem>
+                    </c:forEach>
+                </menu>
+            </li>
+        </li>
+            <li>
+                <a>Offerte</a>
+            </li>
+
             <li>
                 <c:choose>
                     <c:when test="${utente == null}">
-                        <a> Login </a>
+                        <!-- In caso l'utente non sia loggato verrà data la possibilità di effettuare il login mediante un menù a tendina-->
+                        <a> <img src="img/logoLogin_2_2.png"> </a>
                         <menu>
                             <menuitem>
                                 <card>
                                     <form action="LoginServlet" method="post">
-                                        <input type="text" name="username" placeholder="Username"><br>
-                                        <input type="password" name="password" placeholder="Password"><br>
+                                        <input type="text" name="username" value="Spaghettino"><br>
+                                        <input type="password" name="password" value="Ciaone55"><br>
                                         <input type="submit" value="Login">
                                     </form>
                                 </card>
                             </menuitem>
                             <menuitem><a href="RegistrazioneForm">Registrazione</a> </menuitem>
+                            <menuitem><a href="HomeAmministratore.jsp">Accedi come amministratore</a> </menuitem>
                         </menu>
                     </c:when>
+
+
                     <c:otherwise>
-                        <a>${utente.admin ? 'Admin' : 'Account'}</a>
+                        <!-- In caso l'utente sia loggato avrà la possibilità di controllare il proprio profilo o la pagina dei propri ordini -->
+                        <a> <img src="img/logoLogin_2_2.png"> </a>
                         <menu>
-                            <c:if test="${utente.admin}">
-                                <menuitem><a href="AggiuntaProdotto">Aggiungi Prodotto</a> </menuitem>
-                                <menuitem><a href="Ordini">Ordini</a> </menuitem>
-                                <menuitem><a href="AdminOfferte" >Offerte</a> </menuitem>
-                                <hr style="margin: 0px;">
-                            </c:if>
-                            ${utente.nome}
                             <menuitem><a href="profilo.jsp">Profilo</a> </menuitem>
                             <menuitem><a href="todo">I miei ordini</a> </menuitem>
                             <menuitem>
@@ -81,6 +103,13 @@
                         </menu>
                     </c:otherwise>
                 </c:choose>
+
+            </li>
+            <li><a href="Carrello"><img src="img/carrello_rosso.png"></a></li>
+            <li><form action="RicercaServlet" method="get" >
+                <input type="text" name="q" ricerca="ricerca-datalist" placeholder="Ricerca" onkeyup="ricerca{this.value}" value="<c:out value ="${param.q}"/>">
+                <datalist id="ricerca-datalist"></datalist>
+            </form>
             </li>
         </ul>
     </label>

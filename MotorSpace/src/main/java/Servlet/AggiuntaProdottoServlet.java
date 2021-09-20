@@ -1,9 +1,6 @@
 package Servlet;
 
-import model.Categoria;
-import model.Prodotto;
-import model.ProdottoDAO;
-import model.Utente;
+import model.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -23,8 +20,8 @@ public class AggiuntaProdottoServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Prodotto prodotto;
-        Utente utente = (Utente) request.getSession().getAttribute("utente");
-        if (utente == null || !utente.getAdmin()) {
+        Amministratore amministratore = (Amministratore) request.getSession().getAttribute("amministratore");
+        if (amministratore == null ) {
             throw new MyServletException("Utente non autorizzato");
 
         }
@@ -56,7 +53,8 @@ public class AggiuntaProdottoServlet extends HttpServlet {
             prodotto.setDescrizione(descrizione);
             prodotto.setMarca(marca);
             prodotto.setPrezzo(Float.parseFloat(prezzo));
-            prodotto.setId(idStr);
+            int id=Integer.parseInt(idStr);
+            prodotto.setId(id);
             prodotto.setCategoria(categoria);
             prodottoDAO.doSave(prodotto, idCategoria);
             request.setAttribute("notifica", "prodotto aggiunto con successo");

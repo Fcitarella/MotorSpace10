@@ -11,19 +11,18 @@ public class Utente {
     private String nome;
     private String cognome;
     private Date nascita;
-    private Boolean admin;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Utente utente = (Utente) o;
-        return username.equals(utente.username) && email.equals(utente.email) && password.equals(utente.password) && nome.equals(utente.nome) && cognome.equals(utente.cognome) && nascita.equals(utente.nascita) && admin.equals(utente.admin);
+        return username.equals(utente.username) && email.equals(utente.email) && password.equals(utente.password) && nome.equals(utente.nome) && cognome.equals(utente.cognome) && nascita.equals(utente.nascita) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, email, password, nome, cognome, nascita, admin);
+        return Objects.hash(username, email, password, nome, cognome, nascita);
     }
 
     public String getUsername() {
@@ -74,11 +73,4 @@ public class Utente {
         this.nascita = nascita;
     }
 
-    public Boolean getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Boolean admin) {
-        this.admin = admin;
-    }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 public class UtenteDAO {
     public Utente doRetrieveByUsername(String username){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("SELECT username,email, password, nome, cognome, datadinascita, admin FROM utenteregistrato WHERE username =?");
+            PreparedStatement ps = con.prepareStatement("SELECT username,email, password, nome, cognome, datadinascita, admin FROM cliente WHERE username =?");
             ps.setString(1,username);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
@@ -22,7 +22,6 @@ public class UtenteDAO {
                 p.setNome(rs.getString(4));
                 p.setCognome(rs.getString(5));
                 p.setNascita(rs.getDate(6));
-                p.setAdmin(rs.getBoolean(7));
                 return p;
             }
             return null;
@@ -32,14 +31,13 @@ public class UtenteDAO {
     }
     public void doSave(Utente utente){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("INSERT INTO utenteregistrato(username,email,password,nome,cognome,datadinascita,admin) VALUES(?,?,?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO cliente(username,email,password,nome,cognome,datadinascita) VALUES(?,?,?,?,?,?,?)");
             ps.setString(1,utente.getUsername());
             ps.setString(2,utente.getEmail());
             ps.setString(3, utente.getPassword());
             ps.setString(4,utente.getNome());
             ps.setString(5,utente.getCognome());
             ps.setDate(6,utente.getNascita());
-            ps.setBoolean(7,utente.getAdmin());
             if(ps.executeUpdate() != 1){
                 throw new RuntimeException("INSERT error");
             }
@@ -49,7 +47,7 @@ public class UtenteDAO {
     }
     public List<Utente> doRetrieveAll(int offset,int limit){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("SELECT username, email, password, nome, cognome, datadinascita, admin FROM utenteregistrato LIMIT ?,?  ");
+            PreparedStatement ps = con.prepareStatement("SELECT username, email, password, nome, cognome, datadinascita FROM cliente LIMIT ?,?  ");
             ps.setInt(1,offset);
             ps.setInt(2,limit);
             List<Utente> utenti= new ArrayList<>();
@@ -62,7 +60,6 @@ public class UtenteDAO {
                 u.setNome(rs.getString(4));
                 u.setCognome(rs.getString(5));
                 u.setNascita( rs.getDate(6));
-                u.setAdmin(rs.getBoolean(7));
                 utenti.add(u);
             }
             return utenti;
@@ -74,7 +71,7 @@ public class UtenteDAO {
     public Utente doRetrieveByUsernamePassword(String username, String password){
         try(Connection con= ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT username, email, password, nome, cognome, datadinascita, admin FROM utenteregistrato WHERE username=? AND password = ?");
+                    "SELECT username, email, password, nome, cognome, datadinascita FROM cliente WHERE username=? AND password = ?");
             ps.setString(1,username);
             ps.setString(2,password);
             ResultSet rs=ps.executeQuery();
@@ -86,7 +83,6 @@ public class UtenteDAO {
                 p.setNome(rs.getString(4));
                 p.setCognome(rs.getString(5));
                 p.setNascita( rs.getDate(6));
-                p.setAdmin(rs.getBoolean(7));
                 return p;
             }
             return null;

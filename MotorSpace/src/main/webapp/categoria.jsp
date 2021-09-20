@@ -11,10 +11,10 @@
 </jsp:include>
 
 <section>
-    <c:if test="${!utente.admin}">
+    <c:if test="${!Amministratore}">
     <h1>${categoria.nome}</h1>
     </c:if>
-    <c:if test="${utente.admin}">
+    <c:if test="${Amministratore != null}">
         <form action="AdminCategoria" method="post">
             <h1>${categoria.nome}
                 <input type="hidden" name="id" value="${categoria.id}">

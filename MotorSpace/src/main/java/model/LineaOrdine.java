@@ -2,14 +2,14 @@ package model;
 
 public class LineaOrdine {
     int idOrdine;
-    String idProdotto;
+    int idProdotto;
     int quantità;
     float prezzoUnitario;
 
     public LineaOrdine() {
     }
 
-    public LineaOrdine(int idOrdine, String idProdotto, int quantità, float prezzoUnitario) {
+    public LineaOrdine(int idOrdine, int idProdotto, int quantità, float prezzoUnitario) {
         this.idOrdine = idOrdine;
         this.idProdotto = idProdotto;
         this.quantità = quantità;
@@ -24,11 +24,11 @@ public class LineaOrdine {
         this.idOrdine = idOrdine;
     }
 
-    public String getIdProdotto() {
+    public int getIdProdotto() {
         return idProdotto;
     }
 
-    public void setIdProdotto(String idProdotto) {
+    public void setIdProdotto(int idProdotto) {
         this.idProdotto = idProdotto;
     }
 

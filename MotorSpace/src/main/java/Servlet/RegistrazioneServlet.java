@@ -14,7 +14,7 @@ import java.util.Date;
 @WebServlet("/Registrazione")
 public class RegistrazioneServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(request.getSession().getAttribute("utente") != null){
             throw new MyServletException("Utente loggato");
         }
@@ -60,7 +60,6 @@ public class RegistrazioneServlet extends HttpServlet {
             utente.setPassword(password);
             utente.setEmail(email);
             utente.setNascita(nascitasql);
-            utente.setAdmin(false);
             System.out.println(utente.getNome());
             utenteDAO.doSave(utente);
             request.getSession().setAttribute("utente",utente);

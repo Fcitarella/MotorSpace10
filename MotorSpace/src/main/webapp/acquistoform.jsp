@@ -5,41 +5,32 @@
     <jsp:param name="pageTitle" value="Acquisto"/>
 </jsp:include>
 <section>
-<c:choose>
-<c:when test="${utente != null}">
-
-    <form action="Pagamento" method="post">
+    <form action="PassoUnoServlet" method="post">
         <br>
         <label>Nome</label>
         <input type="text" name="nome" value="${utente.nome}">
         <label>Cognome</label>
         <input type="text" name ="cognome" value="${utente.cognome}">
-        <label>Data di nascita</label>
-        <input type="date" name="nascita" value= "${utente.nascita}">
         <label>Email</label>
         <input type="text" name="email" value="${utente.email}">
-        <label>Carta di credito</label>
-        <input type="text" name="carta" value="">
-        <input type="submit" value="Procedi all'acquisto">
+        <label>Provincia</label>
+        <select name="provincia">
+            <option value="SA">SA</option></select>
+        <label>Città</label>
+        <input type="text" name="città" placeholder="Inserire la città">
+        <label>Cap</label>
+        <input type="text" name="cap" placeholder="Inserire il cap">
+        <label>Indirizzo</label>
+        <input type="text" name="indirizzo" placeholder="Inserire l'indirizzo">
+        <c:choose>
+            <c:when test="${utente != null}">
+        <input type="submit" value="Avanti">
+            </c:when>
+            <c:otherwise>
+                <label> Effettua l'accesso per completare l'acquisto</label>
+            </c:otherwise>
+        </c:choose>
     </form>
-</c:when>
-    <c:otherwise>
-    <form action="Pagamento" method="post">
-        <br>
-        <label>Nome</label>
-        <input type="text" name="nome" value="">
-        <label>Cognome</label>
-        <input type="text" name ="cognome" value="">
-        <label>Data di nascita</label>
-        <input type="date" name="nascita"value="">
-        <label>Email</label>
-        <input type="text" name="email" value="">
-        <label>Carta di credito</label>
-        <input type="text" name="carta" value="">
-        <input type="submit" value="Procedi all'acquisto">
-    </form>
-    </c:otherwise>
-</c:choose>
 </section>
 <script>
     var borderOk = '2px solid #080';

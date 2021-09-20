@@ -1,5 +1,6 @@
 package Servlet;
 
+import model.Amministratore;
 import model.Categoria;
 import model.CategoriaDAO;
 import model.Utente;
@@ -19,8 +20,9 @@ public class AdminCategoriaServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    Utente utente = (Utente) request.getSession().getAttribute("utente");
-    if(utente == null || !utente.getAdmin()){
+
+    Amministratore amministratore = (Amministratore) request.getSession().getAttribute("amministratore");
+    if(amministratore == null){
         throw new MyServletException("Utente non autorizzato");
     }
     String idstr = request.getParameter("id");
