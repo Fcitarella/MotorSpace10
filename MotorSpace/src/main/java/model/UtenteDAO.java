@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UtenteDAO {
+
     public Utente doRetrieveByUsername(String username){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT username,email, password, nome, cognome, datadinascita, admin FROM cliente WHERE username =?");

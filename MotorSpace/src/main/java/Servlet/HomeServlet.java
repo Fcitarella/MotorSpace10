@@ -20,7 +20,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         CategoriaDAO categoriaDAO= new CategoriaDAO();
-        List<Categoria> categorie= new ArrayList<Categoria>();
+        List<Categoria> categorie= new ArrayList<>();
         categorie= categoriaDAO.doRetrieveByMacro("Vestiario");
         getServletContext().setAttribute("categorie1",categorie);
         categorie= categoriaDAO.doRetrieveByMacro("PartiDiRicambio");

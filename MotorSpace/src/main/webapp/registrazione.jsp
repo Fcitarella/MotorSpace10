@@ -6,7 +6,7 @@
 <section>
     <h1>Registrazione utente</h1>
     <h5>Riempi tutti i campi</h5>
-    <form name="registrazione" action="Registrazione" method="get">
+    <form name="registrazione" action="Registrazione" method="get" onsubmit= return validate()>
         <label>Username(almeno 6 caratteri), solo lettere e numeri, non utilizzato da altri utenti</label>
         <input type="text" name="username" >
         <label>Password (almeno 8 caratteri, deve contenere: una lettera maiuscola, un numero)</label>
@@ -24,6 +24,50 @@
         <input id="registrami" type="submit" value="Registrami"><span id="registramimessaggio"></span>
     </form>
 </section>
+
+<script >
+
+    function validate() {
+        return (validateEmail() && validatePassword());
+    }
+
+    function validateEmail() {
+        var email = document.form.email.value;
+        var request = new XMLHttpRequest();
+        request.open('GET',	"VerificaUsername?username"+ encodeURIComponent(email),false);
+        // `false` per le richieste synchronous
+        request.send(null);
+        if (request.status === 200) {
+            if (request.responseText === '<ok/>')
+                return true;
+            else
+                alert('username gia presente in archivio');
+        } else
+            alert("problemi di connessione");
+        return false;
+    }
+
+    function validatePassword() {
+        var password = document.form.password.value;
+        if (password.length >= 8
+            && password.toUpperCase() != password
+            && password.toLowerCase() != password
+            && /[0-9]/.test(password)) {
+            if (password == document.form.passwordConfirm.value) {
+                alert("finisco validate");
+
+                return (true);
+            } else {
+                alert("Password non confermata");
+                return false;
+            }
+        } else {
+            alert("Password non valida");
+            return (false);
+        }
+
+    }
+</script>
 <!--<script>
     var borderOk = '2px solid #080';
     var borderNo = '2px solid #f00';
