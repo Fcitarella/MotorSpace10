@@ -13,13 +13,15 @@ import java.util.Date;
 
 @WebServlet("/Registrazione")
 public class RegistrazioneServlet extends HttpServlet {
+
+    private UtenteDAO utenteDAO = new UtenteDAO();
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(request.getSession().getAttribute("utente") != null){
             throw new MyServletException("Utente loggato");
         }
         String username = request.getParameter("username");
-        if (!(username != null && username.length() >= 6 && username.matches("([0-9a-zA-Z])"))) {
+        if (!(username != null && username.matches("([0-9a-zA-Z]{6,30})"))) {
             throw new MyServletException("Username non valido.");
         }
 
@@ -35,42 +37,33 @@ public class RegistrazioneServlet extends HttpServlet {
         }
 
         String nome = request.getParameter("nome");
-        if (!(nome != null && nome.trim().length() > 0 && nome.matches("([a-zA-Z])"))) {
+        if (!(nome != null && nome.trim().length() > 0 && nome.matches("([a-zA-Z]{0,30})"))) {
             throw new MyServletException("Nome non valido.");
         }
         String cognome = request.getParameter("cognome");
-        if (!(cognome != null && cognome.trim().length() > 0 && cognome.matches("[ a-zA-Z]"))) {
+        if (!(cognome != null && cognome.trim().length() > 0 && cognome.matches("([ a-zA-Z]{0,30})"))) {
             throw new MyServletException("Nome non valido.");
         }
         String email = request.getParameter("email");
         if (!(email != null && email.matches("\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w+)"))) {
             throw new MyServletException("Email non valida.");
         }
-        String nascitastr = request.getParameter("nascita");
-        Date nascita;
-            System.out.println("miao");
-            System.out.println(nome);
-        try {
-            nascita= new SimpleDateFormat("yyyy-MM-dd").parse(nascitastr);
-            java.sql.Date nascitasql = new java.sql.Date(nascita.getTime());
+
             Utente utente = new Utente();
             utente.setUsername(username);
             utente.setNome(nome);
             utente.setCognome(cognome);
             utente.setPassword(password);
             utente.setEmail(email);
-            utente.setNascita(nascitasql);
             System.out.println(utente.getNome());
             utenteDAO.doSave(utente);
             request.getSession().setAttribute("utente",utente);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("Home");
         requestDispatcher.forward(request,response);
     }
-    private UtenteDAO utenteDAO = new UtenteDAO();
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);

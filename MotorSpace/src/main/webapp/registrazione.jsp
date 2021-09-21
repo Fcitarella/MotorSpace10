@@ -19,8 +19,6 @@
         <input type="text" name="cognome" >
         <label> Email</label>
         <input type="email" name="email" >
-        <label> Data di nascita </label>
-        <input type="date" name="nascita">
         <input id="registrami" type="submit" value="Registrami"><span id="registramimessaggio"></span>
     </form>
 </section>

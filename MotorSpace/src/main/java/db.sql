@@ -10,10 +10,10 @@ CREATE TABLE amministratore
     password      varchar(30) NOT NULL,
     nome          varchar(30) NOT NULL,
     cognome       varchar(30) NOT NULL,
-    datadinascita  date       NOT NULL,
     codicediaccesso int 	  NOT NULL,
     PRIMARY KEY (id),
     UNIQUE KEY email_UNIQUE (email),
+    UNIQUE KEY codice_UNIQUE(codicediaccesso),
     UNIQUE KEY username_UNIQUE (username)
 );
 
@@ -26,7 +26,6 @@ CREATE TABLE cliente
     password      varchar(30) NOT NULL,
     nome          varchar(30) NOT NULL,
     cognome       varchar(30) NOT NULL,
-    datadinascita date        NOT NULL,
     PRIMARY KEY (id,username),
     UNIQUE KEY email_UNIQUE (email),
     UNIQUE KEY username_UNIQUE (username)
@@ -180,3 +179,6 @@ INSERT INTO prodotto (nome, descrizione, marca, prezzo, categoria)
 VALUES ('Casco FF323 ARROW C RACING', 'Casco integrale in carbonio leggero.', 'L32', 367.90, 1);
 INSERT INTO prodotto (nome, descrizione, marca, prezzo, categoria)
 VALUES ('Giacca moto Albert Avio', 'Giacca da uomo leggera, antivento e traspirante. ', 'Tucano', '69.00','2');
+
+insert into cliente( username, email, password, nome, cognome )
+values ('Spaghettino', 'dkoo@sddfs.it', 'Ciaone55', 'Rodolfo', 'Signorini');
