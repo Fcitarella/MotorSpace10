@@ -36,6 +36,7 @@ CREATE TABLE categoria
     id          int AUTO_INCREMENT,
     nome        varchar(30) NOT NULL,
     descrizione varchar(150) DEFAULT NULL,
+    macrocategoria varchar(30) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -187,39 +188,39 @@ VALUES ('adminSconti', 'amministrazioneSconti@motorspace.com', 'Gity34hbnLS', 'A
 
 /*Insert categoria */
 INSERT INTO categoria
-VALUES ('1', 'Caschi', 'Esplora la nostra selezione di caschi');
+VALUES ('1', 'Caschi', 'Esplora la nostra selezione di caschi', 'Abbigliamento');
 INSERT INTO categoria
-VALUES ('2', 'Giacche', 'Esplora la nostra selezioni di giacche');
+VALUES ('2', 'Giacche', 'Esplora la nostra selezioni di giacche', 'Abbigliamento');
 INSERT INTO categoria
-VALUES ('3', 'Pantaloni', 'Esplora la nostra selezione di pantaloni');
+VALUES ('3', 'Pantaloni', 'Esplora la nostra selezione di pantaloni', 'Abbigliamento');
 INSERT INTO categoria
-VALUES ('4', 'Guanti', 'Esplora la nostra selezione di guanti');
+VALUES ('4', 'Guanti', 'Esplora la nostra selezione di guanti', 'Abbigliamento');
 INSERT INTO categoria
-VALUES ('5', 'Stivali', 'Esplora la nostra selezione di stivali');
+VALUES ('5', 'Stivali', 'Esplora la nostra selezione di stivali', 'Abbigliamento');
 INSERT INTO categoria
-VALUES ('6', 'Protezioni', 'Esplora la nostra selezione di protezioni');
+VALUES ('6', 'Protezioni', 'Esplora la nostra selezione di protezioni', 'Abbigliamento');
 INSERT INTO categoria
-VALUES ('7', 'Batterie', 'Esplora la nostra selezione di batterie');
+VALUES ('7', 'Batterie', 'Esplora la nostra selezione di batterie', 'Parti');
 INSERT INTO categoria
-VALUES ('8', 'Motore e trasmissione', 'Esplora la nostra selezione di motori e trasmissioni');
+VALUES ('8', 'Motore e trasmissione', 'Esplora la nostra selezione di motori e trasmissioni', 'Parti');
 INSERT INTO categoria
-VALUES ('9', 'Cavalletti', 'Esplora la nostra selezione di cavalletti');
+VALUES ('9', 'Cavalletti', 'Esplora la nostra selezione di cavalletti', 'Parti');
 INSERT INTO categoria
-VALUES ('10', 'Manubri, manopole e leve', 'Esplora la nostra selezione di manubri, manopole e leve');
+VALUES ('10', 'Manubri, manopole e leve', 'Esplora la nostra selezione di manubri, manopole e leve', 'Parti');
 INSERT INTO categoria
-VALUES ('11', 'Luci e frecce', 'Esplora la nostra selezione di luci e frecce');
+VALUES ('11', 'Luci e frecce', 'Esplora la nostra selezione di luci e frecce', 'Parti');
 INSERT INTO categoria
-VALUES ('12', 'Specchietti', 'Esplora la nostra selezione di specchietti');
+VALUES ('12', 'Specchietti', 'Esplora la nostra selezione di specchietti', 'Parti');
 INSERT INTO categoria
-VALUES ('13', 'Protezioni moto', 'Esplora la nostra selezione di protezioni');
+VALUES ('13', 'Protezioni moto', 'Esplora la nostra selezione di protezioni', 'Parti');
 INSERT INTO categoria
-VALUES ('14', 'Antifurto e protezione', 'Esplora la nostra selezione di dispositivi antifurto e di protezione');
+VALUES ('14', 'Antifurto e protezione', 'Esplora la nostra selezione di dispositivi antifurto e di protezione', 'Parti');
 INSERT INTO categoria
-VALUES ('15', 'Ruote', 'Esplora la nostra selezione di ruote');
+VALUES ('15', 'Ruote', 'Esplora la nostra selezione di ruote', 'Parti');
 INSERT INTO categoria
-VALUES ('16', 'Coprimoto', 'Esplora la nostra selezione di corpimoto');
+VALUES ('16', 'Coprimoto', 'Esplora la nostra selezione di corpimoto', 'Accessori');
 INSERT INTO categoria
-VALUES ('17', 'Accessori da viaggio', 'Esplora la nostra selezione di accessori da viaggio');
+VALUES ('17', 'Accessori da viaggio', 'Esplora la nostra selezione di accessori da viaggio', 'Accessori');
 
 /*Insert prodotto
 INSERT INTO prodotto VALUES ('nome', 'descrizione', 'codice', 'marca', 'prezzo', 'categoria'); */
