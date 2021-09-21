@@ -55,4 +55,5 @@ release.properties
 pom.xml.releaseBackup
 pom.xml.tag
 
-MotorSpace/src/resurces/database.properties
+
+MotorSpace/src/main/resources/database.properties
