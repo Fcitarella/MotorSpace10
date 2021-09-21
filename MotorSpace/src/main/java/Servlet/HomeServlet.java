@@ -21,11 +21,11 @@ public class HomeServlet extends HttpServlet {
     public void init() throws ServletException {
         CategoriaDAO categoriaDAO= new CategoriaDAO();
         List<Categoria> categorie= new ArrayList<>();
-        categorie= categoriaDAO.doRetrieveByMacro("Abbigliamento");
+        categorie= categoriaDAO.doRetrieveByMacro("Vestiario");
         getServletContext().setAttribute("categorie1",categorie);
-        categorie= categoriaDAO.doRetrieveByMacro("Parti");
+        categorie= categoriaDAO.doRetrieveByMacro("PartiDiRicambio");
         getServletContext().setAttribute("categorie2",categorie);
-        categorie= categoriaDAO.doRetrieveByMacro("Accessori");
+        categorie= categoriaDAO.doRetrieveByMacro("AccessoriMoto");
         getServletContext().setAttribute("categorie3",categorie);
         super.init();
     }

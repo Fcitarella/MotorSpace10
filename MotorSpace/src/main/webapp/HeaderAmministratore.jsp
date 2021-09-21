@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Federico
+  Date: 21/09/2021
+  Time: 16:26
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Categoria" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
@@ -14,7 +21,7 @@
 
     <!-- css -->
 
-  <link href="bare.min.css" rel="stylesheet" type="text/css">
+    <link href="bare.min.css" rel="stylesheet" type="text/css">
     <script src="Ricerca.js"></script>
 </head>
 <body>
@@ -27,18 +34,18 @@
             <div>
                 <a href="Home"><img src="img/logo_small_1.png"></a>
             </div>
-        <!-- Caricamento delle varie categorie di prodotti all'interno dell'header della home-->
-           <li>
-               <a>Vestiario</a>
+            <!-- Caricamento delle varie categorie di prodotti all'interno dell'header della home-->
+            <li>
+                <a>Vestiario</a>
                 <menu>
                     <c:forEach items="${categorie1}" var="categorie1">
                         <menuitem>
                             <a href="Categoria?id=<c:out value="${categorie1.id}"/>"><c:out
-                            value="${categorie1.nome}" /></a>
+                                    value="${categorie1.nome}" /></a>
                         </menuitem>
                     </c:forEach>
                 </menu>
-           </li>
+            </li>
             <li>
                 <a>Parti Di Ricambio</a>
                 <menu>
@@ -61,14 +68,14 @@
                     </c:forEach>
                 </menu>
             </li>
-        </li>
+            </li>
             <li>
                 <a>Offerte</a>
             </li>
 
             <li>
                 <c:choose>
-                    <c:when test="${utente == null}">
+                    <c:when test="${amministratore == null}">
                         <!-- In caso l'utente non sia loggato verrà data la possibilità di effettuare il login mediante un menù a tendina-->
                         <a> <img src="img/logoLogin_2_2.png"> </a>
                         <menu>
@@ -92,7 +99,7 @@
                         <a> <img src="img/logoLogin_2_2.png"> </a>
                         <menu>
                             <menuitem><a href="profilo.jsp">Profilo</a> </menuitem>
-                            <menuitem><a href="Ordini.jsp">I miei ordini</a> </menuitem>
+                            <menuitem><a href="todo">I miei ordini</a> </menuitem>
                             <menuitem>
                                 <card>
                                     <form action="Logout">
