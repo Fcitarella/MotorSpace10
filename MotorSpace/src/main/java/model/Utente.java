@@ -10,19 +10,32 @@ public class Utente {
     private String password;
     private String nome;
     private String cognome;
-    private Date nascita;
+
+    public Utente(){
+
+    }
+
+    public Utente(String username, String email, String password, String nome, String cognome) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.nome = nome;
+        this.cognome = cognome;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Utente utente = (Utente) o;
-        return username.equals(utente.username) && email.equals(utente.email) && password.equals(utente.password) && nome.equals(utente.nome) && cognome.equals(utente.cognome) && nascita.equals(utente.nascita) ;
+        return username.equals(utente.username) && email.equals(utente.email) && password.equals(utente.password) && nome.equals(utente.nome) && cognome.equals(utente.cognome) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, email, password, nome, cognome, nascita);
+        return Objects.hash(username, email, password, nome, cognome);
     }
 
     public String getUsername() {
@@ -65,12 +78,5 @@ public class Utente {
         this.cognome = cognome;
     }
 
-    public Date getNascita() {
-        return nascita;
-    }
-
-    public void setNascita(Date nascita) {
-        this.nascita = nascita;
-    }
 
 }

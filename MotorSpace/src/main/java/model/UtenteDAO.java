@@ -1,10 +1,7 @@
 package model;
 
 import javax.xml.crypto.Data;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +9,7 @@ public class UtenteDAO {
 
     public Utente doRetrieveByUsername(String username){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("SELECT username,email, password, nome, cognome, datadinascita, admin FROM cliente WHERE username =?");
+            PreparedStatement ps = con.prepareStatement("SELECT username, email, password, nome, cognome FROM cliente WHERE username =?");
             ps.setString(1,username);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
@@ -22,7 +19,6 @@ public class UtenteDAO {
                 p.setPassword(rs.getString(3));
                 p.setNome(rs.getString(4));
                 p.setCognome(rs.getString(5));
-                p.setNascita(rs.getDate(6));
                 return p;
             }
             return null;
@@ -30,25 +26,28 @@ public class UtenteDAO {
             throw new RuntimeException(e);
         }
     }
+
     public void doSave(Utente utente){
-        try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("INSERT INTO cliente(username,email,password,nome,cognome,datadinascita) VALUES(?,?,?,?,?,?,?)");
-            ps.setString(1,utente.getUsername());
-            ps.setString(2,utente.getEmail());
+        try(Connection c = ConPool.getConnection()){
+
+            PreparedStatement ps = c.prepareStatement("insert into cliente(username, email, password, nome, cognome) values(?, ?, ?, ?, ?)");
+            ps.setString(1, utente.getUsername());
+            ps.setString(2, utente.getEmail());
             ps.setString(3, utente.getPassword());
-            ps.setString(4,utente.getNome());
-            ps.setString(5,utente.getCognome());
-            ps.setDate(6,utente.getNascita());
+            ps.setString(4, utente.getNome());
+            ps.setString(5, utente.getCognome());
             if(ps.executeUpdate() != 1){
                 throw new RuntimeException("INSERT error");
             }
-        }catch (SQLException e){
-            throw new RuntimeException(e);
+
+        } catch (SQLException e){
+            throw new RuntimeException();
         }
     }
+
     public List<Utente> doRetrieveAll(int offset,int limit){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("SELECT username, email, password, nome, cognome, datadinascita FROM cliente LIMIT ?,?  ");
+            PreparedStatement ps = con.prepareStatement("SELECT username, email, password, nome FROM cliente LIMIT ?,?  ");
             ps.setInt(1,offset);
             ps.setInt(2,limit);
             List<Utente> utenti= new ArrayList<>();
@@ -60,7 +59,6 @@ public class UtenteDAO {
                 u.setPassword(rs.getString(3));
                 u.setNome(rs.getString(4));
                 u.setCognome(rs.getString(5));
-                u.setNascita( rs.getDate(6));
                 utenti.add(u);
             }
             return utenti;
@@ -72,7 +70,7 @@ public class UtenteDAO {
     public Utente doRetrieveByUsernamePassword(String username, String password){
         try(Connection con= ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT username, email, password, nome, cognome, datadinascita FROM cliente WHERE username=? AND password = ?");
+                    "SELECT username, email, password, nome, cognome FROM cliente WHERE username=? AND password = ?");
             ps.setString(1,username);
             ps.setString(2,password);
             ResultSet rs=ps.executeQuery();
@@ -83,7 +81,6 @@ public class UtenteDAO {
                 p.setPassword(rs.getString(3));
                 p.setNome(rs.getString(4));
                 p.setCognome(rs.getString(5));
-                p.setNascita( rs.getDate(6));
                 return p;
             }
             return null;
