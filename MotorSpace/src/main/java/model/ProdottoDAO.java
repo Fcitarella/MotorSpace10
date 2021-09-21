@@ -16,7 +16,7 @@ public class ProdottoDAO {
     }
     public List<Prodotto>doRetrieveAll(int offset,int limit) {
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT prodotto.codice,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo FROM prodotto limit ?,?");
+            PreparedStatement ps = con.prepareStatement("SELECT prodotto.id,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo FROM prodotto limit ?,?");
             ps.setInt(1, offset);
             ps.setInt(2, limit);
             ResultSet rs = ps.executeQuery();
@@ -38,7 +38,7 @@ public class ProdottoDAO {
     }
     public Prodotto doRetrieveById(String id){
         try(Connection con =ConPool.getConnection()){
-            PreparedStatement ps=con.prepareStatement("SELECT prodotto.codice,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo FROM prodotto WHERE id=?");
+            PreparedStatement ps=con.prepareStatement("SELECT prodotto.id,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo FROM prodotto WHERE id=?");
             ps.setString(1,id);
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
@@ -57,7 +57,7 @@ public class ProdottoDAO {
     }
     public List<Prodotto> doRetrieveByNome(String against,int offset,int limit) {
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT prodotto.codice,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo FROM prodotto WHERE MATCH (nome)AGAINST(? IN BOOLEAN MODE) LIMIT ?,?");
+            PreparedStatement ps = con.prepareStatement("SELECT prodotto.id,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo FROM prodotto WHERE MATCH (nome)AGAINST(? IN BOOLEAN MODE) LIMIT ?,?");
             ps.setString(1, against);
             ps.setInt(2, offset);
             ps.setInt(3, limit);
@@ -92,7 +92,7 @@ public class ProdottoDAO {
 
     public List<Prodotto> doRetrieveByNomeOrDescrizione(String against,int offset,int limit) {
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT prodotto.codice,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo FROM prodotto WHERE MATCH (nome,descrizione)AGAINST(?) LIMIT ?,?");
+            PreparedStatement ps = con.prepareStatement("SELECT prodotto.id,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo FROM prodotto WHERE MATCH (nome,descrizione)AGAINST(?) LIMIT ?,?");
             ps.setString(1, against);
             ps.setInt(2, offset);
             ps.setInt(3, limit);
@@ -114,7 +114,7 @@ public class ProdottoDAO {
     }
     public List<Prodotto> doRetrieveByCategoria(int categoria, OrderBy orderBy, int offset, int limit) {
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT prodotto.codice,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo FROM prodotto JOIN categoria ON prodotto.categoria=categoria.id WHERE categoria.id=?"+orderBy.sql+" LIMIT ?,?");
+            PreparedStatement ps = con.prepareStatement("SELECT prodotto.id,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo FROM prodotto JOIN categoria ON prodotto.categoria=categoria.id WHERE categoria.id=?"+orderBy.sql+" LIMIT ?,?");
             ps.setInt(1, categoria);
             ps.setInt(2, offset);
             ps.setInt(3, limit);
@@ -155,7 +155,7 @@ public class ProdottoDAO {
 
     public void doUpdate(Prodotto prodotto,int idCategoria){
         try(Connection con = ConPool.getConnection()){
-             PreparedStatement ps=con.prepareStatement("UPDATE prodotto SET nome=?, descrizione=?, marca=?, prezzo=?, categoria=? WHERE codice =?");
+             PreparedStatement ps=con.prepareStatement("UPDATE prodotto SET nome=?, descrizione=?, marca=?, prezzo=?, categoria=? WHERE id =?");
              ps.setString(1,prodotto.getNome());
              ps.setString(2,prodotto.getDescrizione());
              ps.setString(3,prodotto.getMarca());
@@ -172,7 +172,7 @@ public class ProdottoDAO {
 
     public void doDelete(String id){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("DELETE FROM prodotto WHERE codice=?");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM prodotto WHERE id=?");
             ps.setString(1, id);
             if(ps.executeUpdate() != 1){
                 throw new RuntimeException("UPDATE error .");
