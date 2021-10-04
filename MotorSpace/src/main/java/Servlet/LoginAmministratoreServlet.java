@@ -1,23 +1,19 @@
-/*package Servlet;
+package Servlet;
 
 import javax.servlet.http.HttpServlet;
 
-package Servlet;
-
 import model.Amministratore;
 import model.AmministratoreDAO;
-import model.Utente;
-import model.UtenteDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet("/LoginServlet")
+@WebServlet("/LoginAmministratoreServlet")
 public class LoginAmministratoreServlet extends HttpServlet {
 
-    private final AmministratoreDAO AmministratoreDAO= new AmministratoreDAO();
+    private final AmministratoreDAO amministratoreDAO= new AmministratoreDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -30,12 +26,12 @@ public class LoginAmministratoreServlet extends HttpServlet {
         String codice = request.getParameter("codice");
         Amministratore amministratore=null;
         if(username != null && password != null){
-            amministratore = AmministratoreDAO.doRetrieveByUsernamePasswordCodice(username,password);
+            amministratore = amministratoreDAO.doRetrieveByUsernamePasswordCode(username,password,codice);
         }
-        if(utente == null){
+        if(amministratore == null){
             throw new MyServletException("Username e/o password non validi.");
         }
-        request.getSession().setAttribute("utente",utente);
+        request.getSession().setAttribute("amministratore",amministratore);
 
         String dest = request.getHeader("referer");
         if(dest == null || dest.contains("/Login") || dest.trim().isEmpty()){
@@ -44,4 +40,3 @@ public class LoginAmministratoreServlet extends HttpServlet {
         response.sendRedirect(dest);
     }
 }
-*/
