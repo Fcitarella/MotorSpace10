@@ -26,7 +26,7 @@ public class AcquistoServlet extends HttpServlet {
             throw new MyServletException("Nessun prodotto nel carrello");
         }
         Utente u = new Utente();
-        u =(Utente ) session.getAttribute("utente");
+        u =(Utente) session.getAttribute("utente");
         Ordine o = new Ordine();
         o.setCliente(u.getUsername());
         Date dataodierna = new Date(System.currentTimeMillis());

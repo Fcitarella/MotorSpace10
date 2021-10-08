@@ -90,9 +90,9 @@ public class ProdottoDAO {
         }
     }
 
-    public List<Prodotto> doRetrieveByNomeOrDescrizione(String against,int offset,int limit) {
+    public List<Prodotto> doRetrieveByDescrizione(String against,int offset,int limit) {
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT prodotto.id,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo FROM prodotto WHERE MATCH (nome,descrizione)AGAINST(?) LIMIT ?,?");
+            PreparedStatement ps = con.prepareStatement("SELECT prodotto.id,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo,prodotto.categoria FROM prodotto WHERE MATCH (descrizione)AGAINST(? IN BOOLEAN MODE) LIMIT ?,?");
             ps.setString(1, against);
             ps.setInt(2, offset);
             ps.setInt(3, limit);

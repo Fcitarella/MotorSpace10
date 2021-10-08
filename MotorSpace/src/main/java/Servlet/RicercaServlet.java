@@ -20,7 +20,10 @@ RicercaServlet extends HttpServlet {
     }
     private final ProdottoDAO prodottoDAO=new ProdottoDAO();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Prodotto> prodotti= prodottoDAO.doRetrieveByNomeOrDescrizione(request.getParameter("q"),0,10);
+        List<Prodotto> prodotti= prodottoDAO.doRetrieveByNome(request.getParameter("q"),0,10);
+        if (prodotti.isEmpty()){
+            prodotti = prodottoDAO.doRetrieveByDescrizione(request.getParameter("q"),0,10);
+        }
         request.setAttribute("prodotti",prodotti);
         RequestDispatcher requestDispatcher= request.getRequestDispatcher("ricerca.jsp");
         requestDispatcher.forward(request,response);

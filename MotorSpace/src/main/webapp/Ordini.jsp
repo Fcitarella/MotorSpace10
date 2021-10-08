@@ -9,27 +9,30 @@
          pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="Header.jsp">
-    <jsp:param name="pageTitle" value="Registrazione utente"/>
+    <jsp:param name="pageTitle" value="Ordini"/>
 </jsp:include>
-
-<body>
 <section>
-    <hr>
-    <form>
-        <h1>Pagina Ordini</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Numero ordine</th>
+            <th>Data Ordine</th>
+            <th>Data spedizione</th>
+            <th>Data consegna</th>
+        </tr>
+        </thead>
 
-       <li> <a>Nome</a>
-        </li>
-        <li><a>Cognome</a>
-        </li>
-
-        <label>Email</label>
-        <input type="text" name="Email"value= "${utente.email}"readonly>
-        <label>Data di nascita</label>
-        <input type="date" name="nascita" value="${utente.nascita}"readonly>
-    </form>
-    <button onclick="window.location.href='ModificaDati.jsp'" type="button" class="btn btn-warning">Modifica dati</button>
-    <%@ include file="footer.html" %>
+        <tbody>
+        <c:forEach items="${ordini}" var="ordine">
+        <tr>
+            <td>${ordine.id}</td>
+            <td>${ordine.dataOrdine}</td>
+            <td>${ordine.dataSpedizione}</td>
+            <td>${ordine.dataConsegna}</td>
+            <td><a href="visualizzaOrdine?id=${ordine.id}" btn primary="Dettagli" </td>
+        </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </section>
-</body>
-</html>
+<%@include file="footer.html"%>
