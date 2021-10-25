@@ -15,7 +15,11 @@ public class LogoutServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getSession().removeAttribute("utente");
+        if(request.getSession().getAttribute("utente")!= null)
+            request.getSession().removeAttribute("utente");
+        else
+        request.getSession().removeAttribute("amministratore");
+
 
         String dest = request.getHeader("referer");
         if( dest == null || dest.contains("/Logout") || dest.trim().isEmpty()){

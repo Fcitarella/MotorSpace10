@@ -82,7 +82,7 @@
                                 </card>
                             </menuitem>
                             <menuitem><a href="RegistrazioneForm">Registrazione</a> </menuitem>
-                            <menuitem><a href="HomeAmministratore.jsp">Accedi come amministratore</a> </menuitem>
+                            <menuitem><a href="LoginAmministratoreServlet?id=home">Accedi come amministratore</a> </menuitem>
                         </menu>
                     </c:when>
 
@@ -91,8 +91,8 @@
                         <!-- In caso l'utente sia loggato avrà la possibilità di controllare il proprio profilo o la pagina dei propri ordini -->
                         <a> <img src="img/logoLogin_2_2.png"> </a>
                         <menu>
-                            <menuitem><a href="profilo.jsp">Profilo</a> </menuitem>
-                            <menuitem><a href="Ordini.jsp">I miei ordini</a> </menuitem>
+                            <menuitem><a href="WEB-INF/jsp/profilo.jsp">Profilo</a> </menuitem>
+                            <menuitem><a href="WEB-INF/jsp/Ordini.jsp">I miei ordini</a> </menuitem>
                             <menuitem>
                                 <card>
                                     <form action="Logout">

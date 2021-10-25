@@ -25,8 +25,11 @@ public class AcquistoServlet extends HttpServlet {
         if(carrello == null){
             throw new MyServletException("Nessun prodotto nel carrello");
         }
-        Utente u = new Utente();
+        Utente u;
         u =(Utente) session.getAttribute("utente");
+        if(u == null){
+            throw new MyServletException("Devi prima loggarti");
+        }
         Ordine o = new Ordine();
         o.setCliente(u.getUsername());
         Date dataodierna = new Date(System.currentTimeMillis());
@@ -50,7 +53,7 @@ public class AcquistoServlet extends HttpServlet {
             carrello.remove(p.getProdotto().getId());
         }
 
-       RequestDispatcher requestDispatcher = request.getRequestDispatcher("acquistoform.jsp");
+       RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/acquistoform.jsp");
         requestDispatcher.forward(request,response);
     }
 

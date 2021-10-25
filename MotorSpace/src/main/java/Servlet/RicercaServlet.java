@@ -25,7 +25,7 @@ RicercaServlet extends HttpServlet {
             prodotti = prodottoDAO.doRetrieveByDescrizione(request.getParameter("q"),0,10);
         }
         request.setAttribute("prodotti",prodotti);
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher("ricerca.jsp");
+        RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/ricerca.jsp");
         requestDispatcher.forward(request,response);
     }
 }

@@ -5,7 +5,7 @@
          pageEncoding="utf-8"%>
 
 <!DOCTYPE html>
-<jsp:include page="Header.jsp">
+<jsp:include page="../../Header.jsp">
 
     <jsp:param name="pageTitle" value="${categoria.nome}"/>
 </jsp:include>
@@ -82,4 +82,4 @@
         </div>
     </grid>
 </section>
-<%@include file="footer.html"%>
+<%@include file="../../footer.html"%>
