@@ -16,8 +16,6 @@
     <input type="text" name ="Cognome"value= "${utente.cognome}" readonly>
     <label>Email</label>
     <input type="text" name="Email"value= "${utente.email}"readonly>
-    <label>Data di nascita</label>
-    <input type="date" name="nascita" value="${utente.nascita}"readonly>
 </form>
     <button onclick="window.location.href='ModificaDati.jsp'" type="button" class="btn btn-warning">Modifica dati</button>
 <%@ include file="footer.html" %>

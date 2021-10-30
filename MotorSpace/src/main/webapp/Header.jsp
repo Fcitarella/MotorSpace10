@@ -82,7 +82,7 @@
                                 </card>
                             </menuitem>
                             <menuitem><a href="RegistrazioneForm">Registrazione</a> </menuitem>
-                            <menuitem><a href="HomeAmministratore.jsp">Accedi come amministratore</a> </menuitem>
+                            <menuitem><a href="HomeAmministratore">Accedi come amministratore</a> </menuitem>
                         </menu>
                     </c:when>
 
@@ -92,7 +92,7 @@
                         <a> <img src="img/logoLogin_2_2.png"> </a>
                         <menu>
                             <menuitem><a href="profilo.jsp">Profilo</a> </menuitem>
-                            <menuitem><a href="Ordini.jsp">I miei ordini</a> </menuitem>
+                            <menuitem><a href="VisualizzaOrdine">I miei ordini</a> </menuitem>
                             <menuitem>
                                 <card>
                                     <form action="Logout">
@@ -107,7 +107,7 @@
             </li>
             <li><a href="Carrello"><img src="img/carrello_rosso.png"></a></li>
             <li><form action="RicercaServlet" method="get" >
-                <input type="text" name="q" ricerca="ricerca-datalist" placeholder="Ricerca" onkeyup="ricerca{this.value}" value="<c:out value ="${param.q}"/>">
+                <input type="text" name="q" ricerca="ricerca-datalist" placeholder="Ricerca" onkeyup="ricerca(this.value)" value="<c:out value ="${param.q}"/>">
                 <datalist id="ricerca-datalist"></datalist>
             </form>
             </li>

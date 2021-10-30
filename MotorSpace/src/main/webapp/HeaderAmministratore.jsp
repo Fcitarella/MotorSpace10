@@ -89,7 +89,7 @@
                                 </card>
                             </menuitem>
                             <menuitem><a href="RegistrazioneForm">Registrazione</a> </menuitem>
-                            <menuitem><a href="HomeAmministratore.jsp">Accedi come amministratore</a> </menuitem>
+                            <menuitem><a href="Home">Non sei un amministratore?Accedi come utente</a> </menuitem>
                         </menu>
                     </c:when>
 
@@ -114,7 +114,7 @@
             </li>
             <li><a href="Carrello"><img src="img/carrello_rosso.png"></a></li>
             <li><form action="RicercaServlet" method="get" >
-                <input type="text" name="q" ricerca="ricerca-datalist" placeholder="Ricerca" onkeyup="ricerca{this.value}" value="<c:out value ="${param.q}"/>">
+                <input type="text" name="q" ricerca="ricerca-datalist" placeholder="Ricerca" onkeyup="ricerca(this.value)" value="<c:out value ="${param.q}"/>">
                 <datalist id="ricerca-datalist"></datalist>
             </form>
             </li>

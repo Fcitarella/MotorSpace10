@@ -14,11 +14,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/Home")
-public class HomeServlet2 extends HttpServlet {
+@WebServlet("/HomeAmministratore")
+public class HomeAmministratoreServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private final ProdottoDAO prodottoDao= new ProdottoDAO();
-    //Servlet per l'apertura della pagina home dopo la pressione del logo o della scritta home
+    //Servlet per l'apertura della pagina home dopo la pressione del tasto " accedi come amministratore"
     @Override
     public void init() throws ServletException {//caricamento delle varie categorie dei prodotti nella home page
         CategoriaDAO categoriaDAO= new CategoriaDAO();
@@ -35,7 +35,7 @@ public class HomeServlet2 extends HttpServlet {
         List<Prodotto> prodotti= prodottoDao.doRetrieveAll(0,10);//caricamento primi 10 prodotti nella home page
         request.setAttribute("Prodotti",prodotti);
 
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher("/WEB-INF/Prova.jsp");
+        RequestDispatcher requestDispatcher= request.getRequestDispatcher("HomeAmministratore.jsp");
         requestDispatcher.forward(request,response);
     }
 }

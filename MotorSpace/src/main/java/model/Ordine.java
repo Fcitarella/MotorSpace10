@@ -5,11 +5,12 @@ import java.sql.Date;
 public class Ordine {
     int id;
     String cliente;// viene inserito l'username del cliente
+    float prezzo_tot;
     Date dataOrdine;
     Date dataSpedizione;
     Date dataConsegna;
 
-    public Ordine(String cliente, Date dataOrdine, Date dataConsegna, Date dataSpedizione) {
+    public Ordine(String cliente, Date dataOrdine, Date dataConsegna, Date dataSpedizione, float prezzo_tot ) {
         this.cliente=cliente;
         this.dataOrdine = dataOrdine;
         this.dataConsegna = dataConsegna;

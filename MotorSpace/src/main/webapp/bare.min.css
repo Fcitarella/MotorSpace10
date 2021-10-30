@@ -787,7 +787,7 @@ table:not([class]) td,
 table:not([class]) th,
 table[xx] td,
 table[xx] th{
-    border-bottom:2px solid #e3e6e8;
+    border-bottom:2px solid #8c1935;
     padding:1rem
 }
 table:not([class]) th,
