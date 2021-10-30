@@ -32,7 +32,7 @@
 
         <ul>
             <div>
-                <a href="Home"><img src="img/logo_small_1.png"></a>
+                <a href="LoginAmministratoreServlet?id=home"><img src="img/logo_small_1.png"></a>
             </div>
             <!-- Caricamento delle varie categorie di prodotti all'interno dell'header della home-->
             <li>
@@ -88,8 +88,10 @@
                                     </form>
                                 </card>
                             </menuitem>
-                            <menuitem><a href="RegistrazioneForm">Registrazione</a> </menuitem>
-                            <menuitem><a href="Home">Non sei un amministratore?Accedi come utente</a> </menuitem>
+                            <menuitem>
+                                <a href="Home">Non sei amministratore? Torna al login utente</a>
+                            </menuitem>
+
                         </menu>
                     </c:when>
 
@@ -98,7 +100,7 @@
                         <!-- In caso l'utente sia loggato avrà la possibilità di controllare il proprio profilo o la pagina dei propri ordini -->
                         <a> <img src="img/logoLogin_2_2.png"> </a>
                         <menu>
-                            <menuitem><a href="profilo.jsp">Profilo</a> </menuitem>
+                            <menuitem><a href="WEB-INF/jsp/profilo.jsp">Profilo</a> </menuitem>
                             <menuitem><a href="todo">I miei ordini</a> </menuitem>
                             <menuitem>
                                 <card>

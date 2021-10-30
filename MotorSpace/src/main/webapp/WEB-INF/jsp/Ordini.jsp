@@ -8,7 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="Header.jsp">
+<jsp:include page="../../Header.jsp">
     <jsp:param name="pageTitle" value="Ordini"/>
 </jsp:include>
 <section>
@@ -29,10 +29,10 @@
             <td>${ordine.dataOrdine}</td>
             <td>${ordine.dataSpedizione}</td>
             <td>${ordine.dataConsegna}</td>
-            <td><a href="visualizzaOrdine?id=${ordine.id}" btn primary="Dettagli" </td>
+            <td><a href="visualizzaOrdine?id=${ordine.id}" btn primary="Dettagli"/></td>
         </tr>
         </c:forEach>
         </tbody>
     </table>
 </section>
-<%@include file="footer.html"%>
+<%@include file="../../footer.html"%>

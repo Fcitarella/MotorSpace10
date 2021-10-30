@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name= "HomeServlet ",urlPatterns = "",loadOnStartup = 1)
+@WebServlet(name= "HomeServlet",urlPatterns = "",loadOnStartup = 1)
 public class HomeServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private final ProdottoDAO prodottoDao= new ProdottoDAO();

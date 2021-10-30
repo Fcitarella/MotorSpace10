@@ -9,7 +9,7 @@
         pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<jsp:include page="Header.jsp">
+<jsp:include page="../../Header.jsp">
     <jsp:param name="pageTitle" value="Carrello"/>
 </jsp:include>
 <section>
@@ -44,11 +44,11 @@
          <h2>Totale:${carrello.prezzoTot}</h2>
     </div>
     <div col="1/3">
-        <form action="acquistoform.jsp">
+        <form action="Pagamento" method = post>
             <input type="submit" value="Completa acquisto">
          </form>
     </div>
     </grid>
 </section>
 </c:if>
-<%@include file="footer.html"%>
+<%@include file="../../footer.html"%>

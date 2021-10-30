@@ -1,7 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
         pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="Header.jsp">
+<jsp:include page="../../Header.jsp">
     <jsp:param name="pageTitle" value="Acquisto"/>
 </jsp:include>
 <section>
@@ -47,7 +47,7 @@
         if (input.value.length >= 6 && input.value.match(/^[0-9a-zA-Z]+$/)){
             var xmlHttpReq = new XMLHttpRequest();
             xmlHttpReq.onreadystatechange = function(){
-                if(this.readyState == 4 && this.status == 200 && this.responseText =='<ok/'>){
+                if(this.readyState == 4 && this.status == 200 && this.responseText =='<ok/>'){
                     usernameOk = true;
                     input.style.border = borderOk;
                 }else{
@@ -122,4 +122,4 @@
     }
 
 </script>
-<%@include file="footer.html"%>
+<%@include file="../../footer.html"%>

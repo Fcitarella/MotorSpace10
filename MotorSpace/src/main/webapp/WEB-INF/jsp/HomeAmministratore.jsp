@@ -2,29 +2,29 @@
 <%@ page import="java.util.List" %>
 <%@taglib  uri = "http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<jsp:include page="HeaderAmministratore.jsp">
+<jsp:include page="../../HeaderAmministratore.jsp">
     <jsp:param name="pageTitle" value="Home"/>
 </jsp:include>
 <section>
-    <link href="animate.css" type="text/css" rel="stylesheet">
+    <link href="../../animate.css" type="text/css" rel="stylesheet">
     <div class="slideshow-container">
 
         <!-- Full-width images with number and caption text -->
         <div class="mySlides">
             <div class="numbertext">1 / 3</div>
-            <img src="img/offerte/Dainese_Kleidung_Banner.jpg" style="width:100%">
+            <img src="../../img/offerte/Dainese_Kleidung_Banner.jpg" style="width:100%">
             <div class="text">Caption Text</div>
         </div>
 
         <div class="mySlides">
             <div class="numbertext">2 / 3</div>
-            <img src="img/offerte/DaineseBanner4_m.jpg" style="width:100%">
+            <img src="../../img/offerte/DaineseBanner4_m.jpg" style="width:100%">
             <div class="text">Caption Two</div>
         </div>
 
         <div class="mySlides">
             <div class="numbertext">3 / 3</div>
-            <img src="img/offerte/img67.jpg" style="width:100%">
+            <img src="../../img/offerte/img67.jpg" style="width:100%">
             <div class="text">Caption Three</div>
         </div>
 
@@ -75,4 +75,4 @@
         setTimeout(showSlides, 4000); // Change image every 2 seconds
     }
 </script>
-<%@include file="footer.html"%>
+<%@include file="../../footer.html"%>

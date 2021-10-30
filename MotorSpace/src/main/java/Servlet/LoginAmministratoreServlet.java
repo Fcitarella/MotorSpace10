@@ -16,15 +16,23 @@ public class LoginAmministratoreServlet extends HttpServlet {
     private final AmministratoreDAO amministratoreDAO= new AmministratoreDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String id = request.getParameter("id");
+        System.out.println(id);
+        if("home".equals(id)){
+            RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/HomeAmministratore.jsp");
+            requestDispatcher.forward(request,response);
+        }
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String codice = request.getParameter("codice");
-        Amministratore amministratore=null;
+        Amministratore amministratore = null;
         if(username != null && password != null){
             amministratore = amministratoreDAO.doRetrieveByUsernamePasswordCode(username,password,codice);
         }

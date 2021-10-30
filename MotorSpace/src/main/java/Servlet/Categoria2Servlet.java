@@ -43,7 +43,7 @@ public class Categoria2Servlet extends HttpServlet {
         List<Prodotto> prodotti= prodottoDAO.doRetrieveByCategoria(id,ord, (pag -1)* perpag,perpag );
         request.setAttribute("prodotti",prodotti);
 
-        RequestDispatcher requestDispatcher =request.getRequestDispatcher("categoria.jsp");
+        RequestDispatcher requestDispatcher =request.getRequestDispatcher("WEB-INF/jsp/categoria.jsp");
         requestDispatcher.forward(request,response);
     }
 }

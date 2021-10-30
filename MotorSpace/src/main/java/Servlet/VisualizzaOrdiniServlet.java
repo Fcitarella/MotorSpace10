@@ -12,7 +12,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-@WebServlet("/VisualizzaOrdine")
+
+
+@WebServlet("/VisualizzaOrdini")
+
 public class VisualizzaOrdiniServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 
@@ -27,14 +30,14 @@ public class VisualizzaOrdiniServlet extends HttpServlet {
         }catch (NumberFormatException e){
             throw new MyServletException("Nessun ordine effettuato");
         }
-        List<Ordine> ordini = new ArrayList<>();
+        List<Ordine> ordini;
         ordini = ordineDAO.doRetrieveByUsername(username);
         if(ordini==null){
             throw new MyServletException("Ordine non trovato");
         }
         request.setAttribute("ordini",ordini);
 
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher("Ordini.jsp");
+        RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/Ordini.jsp");
         requestDispatcher.forward(request,response);
     }
 }

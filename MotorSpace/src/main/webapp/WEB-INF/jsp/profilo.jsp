@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="Header.jsp">
+<jsp:include page="../../Header.jsp">
     <jsp:param name="pageTitle" value="Registrazione utente"/>
 </jsp:include>
 
@@ -18,7 +18,7 @@
     <input type="text" name="Email"value= "${utente.email}"readonly>
 </form>
     <button onclick="window.location.href='ModificaDati.jsp'" type="button" class="btn btn-warning">Modifica dati</button>
-<%@ include file="footer.html" %>
+<%@ include file="../../footer.html" %>
 </section>
 </body>
 </html>
