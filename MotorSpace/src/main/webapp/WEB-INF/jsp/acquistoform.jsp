@@ -1,7 +1,8 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-        pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="../../Header.jsp">
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<body>
+<jsp:include page="Header.jsp">
     <jsp:param name="pageTitle" value="Acquisto"/>
 </jsp:include>
 <section>
@@ -32,6 +33,7 @@
         </c:choose>
     </form>
 </section>
+</body>
 <script>
     var borderOk = '2px solid #080';
     var borderNo = '2px solid #f00';
@@ -122,4 +124,4 @@
     }
 
 </script>
-<%@include file="../../footer.html"%>
+<%@include file="../footer.html"%>

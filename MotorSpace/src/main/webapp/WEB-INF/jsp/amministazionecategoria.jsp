@@ -8,7 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="operazione" value="${param.rimuovi != null ? 'Rimozione' : (categoria == null ? 'Aggiungi' : 'Modifica')}"/>
-<jsp:include page="../../Header.jsp">
+<jsp:include page="Header.jsp">
     <jsp:param name="pageTitle" value="${operazione} categoria"/>
 </jsp:include>
 <section>

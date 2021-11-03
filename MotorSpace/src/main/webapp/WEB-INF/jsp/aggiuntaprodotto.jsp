@@ -34,4 +34,4 @@
         </form>
     </c:if>
 </section>
-<%@include file="../../footer.html"%>
+<%@include file="../footer.html"%>

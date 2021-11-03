@@ -24,12 +24,10 @@ public class VisualizzaOrdiniServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
         HttpSession session = request.getSession();
         String username;
-        try {
-            Utente utente = (Utente) session.getAttribute("Utente");
+            Utente utente = (Utente) session.getAttribute("utente");
+            if(utente != null)
             username = utente.getUsername();
-        }catch (NumberFormatException e){
-            throw new MyServletException("Nessun ordine effettuato");
-        }
+            else throw new MyServletException("Nessun utente loggato");
         List<Ordine> ordini;
         ordini = ordineDAO.doRetrieveByUsername(username);
         if(ordini==null){

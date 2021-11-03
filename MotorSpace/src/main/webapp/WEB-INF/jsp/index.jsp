@@ -1,12 +1,15 @@
 <%@ page import="model.Prodotto" %>
 <%@ page import="java.util.List" %>
-<%@taglib  uri = "http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <jsp:include page="Header.jsp">
     <jsp:param name="pageTitle" value="Home"/>
 </jsp:include>
+<meta charset="UTF-8">
 <section>
-    <link href="animate.css" type="text/css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/animate.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/bare.min.css" type="text/css">
     <div class="slideshow-container">
 
         <!-- Full-width images with number and caption text -->
@@ -75,4 +78,4 @@
         setTimeout(showSlides, 4000); // Change image every 2 seconds
     }
 </script>
-<%@include file="footer.html"%>
+<%@include file="../footer.html"%>

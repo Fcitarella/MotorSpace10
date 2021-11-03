@@ -13,4 +13,4 @@
 <section>
     <h1><%= exception.getMessage()%></h1>
 </section>
-<%@include file="footer.html"%>
+<%@include file="../footer.html"%>

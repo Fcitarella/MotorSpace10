@@ -35,7 +35,7 @@ public class HomeAmministratoreServlet extends HttpServlet {
         List<Prodotto> prodotti= prodottoDao.doRetrieveAll(0,10);//caricamento primi 10 prodotti nella home page
         request.setAttribute("Prodotti",prodotti);
 
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher("HomeAmministratore.jsp");
+        RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/HomeAmministratore.jsp");
         requestDispatcher.forward(request,response);
     }
 }

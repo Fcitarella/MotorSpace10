@@ -47,7 +47,7 @@ public class AcquistoServlet extends HttpServlet {
 
             l.setIdOrdine(id);
             l.setIdProdotto(p.getProdotto().getId());
-            l.setQuantità(l.getQuantità());
+            l.setQuantità(p.getQuantità());
             l.setPrezzoUnitario(p.getProdotto().getPrezzo());
             lineaOrdineDAO.doSave(l);
             carrello.remove(p.getProdotto().getId());
