@@ -58,3 +58,5 @@ pom.xml.tag
 
 MotorSpace/src/main/resources/database.properties
 MotorSpace/src/test
+MotorSpace/target/classes/database.properties
+
