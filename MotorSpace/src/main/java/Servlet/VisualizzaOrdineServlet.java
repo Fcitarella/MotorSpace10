@@ -1,7 +1,6 @@
 package Servlet;
 
-import model.Carrello;
-import model.ProdottoDAO;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,51 +10,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @WebServlet("/VisualizzaOrdine")
 public class VisualizzaOrdineServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }
-    ProdottoDAO prodottoDAO=new ProdottoDAO();
     protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         HttpSession session= request.getSession();
-        Carrello carrello=(Carrello) session.getAttribute(("carrello"));
-        if(carrello==null){
-            carrello= new Carrello();
-            session.setAttribute("carrello", carrello);
-        }
-        String prodIdStr = request.getParameter("prodId");
-        if(prodIdStr != null){
-            int prodId = Integer.parseInt(prodIdStr);
-            String addNumStr =request.getParameter("addNum");
-            if (addNumStr!=null){
-                int addNum=Integer.parseInt(addNumStr);
 
-                Carrello.ProdottoQuantità prodQuantità = carrello.get(prodId);
-                if(prodQuantità!=null) {
-                    prodQuantità.setQuantità(prodQuantità.getQuantità()+ addNum);
-                }else{
-                    carrello.put(prodottoDAO.doRetrieveById(prodIdStr),addNum);
-                }
-            }else{
-                String setNumStr = request.getParameter("setNum");
-                if (setNumStr!=null){
-                    int setNum=Integer.parseInt(setNumStr);
-                    if(setNum <= 0){
-                        carrello.remove(prodId);
-                    }else {
-                        Carrello.ProdottoQuantità prodQuant= carrello.get(prodId);
-                        if(prodQuant != null){
-                            prodQuant.setQuantità(setNum);
-                        }else{
-                            carrello.put(prodottoDAO.doRetrieveById(prodIdStr),setNum);
-                        }
-                    }
-                }
-            }
+        Utente utente = (Utente) session.getAttribute("utente");
+        if(utente == null)
+            throw new MyServletException("Nessun utente loggato");
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        Ordine ordine = new OrdineDAO().doRetrieveById(id);
+        if(ordine == null){
+        throw new MyServletException("Ordine non valido");
         }
-        RequestDispatcher requestDispatcher=request.getRequestDispatcher("WEB-INF/jsp/carrello.jsp");
+        List<LineaOrdine> lineaOrdine = new LineaOrdineDAO().doRetrieveByOrdine(id);
+        Map<Integer, String> prodotti = new HashMap<>();
+        Prodotto p;
+        for(LineaOrdine ln : lineaOrdine){
+            p = new ProdottoDAO().doRetrieveById(ln.getIdProdotto());
+            prodotti.put(ln.getIdProdotto(), p.getNome());
+        }
+        session.setAttribute("ordine", ordine);
+        session.setAttribute("id", id);
+        session.setAttribute("lineaOrdine", lineaOrdine);
+
+
+
+        RequestDispatcher requestDispatcher=request.getRequestDispatcher("WEB-INF/jsp/VisualizzaOrdine.jsp");
         requestDispatcher.forward(request,response);
     }
 }

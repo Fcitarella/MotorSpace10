@@ -18,16 +18,16 @@ public class ProdottoServlet extends HttpServlet {
     }
     private final ProdottoDAO prodottoDAO= new ProdottoDAO();
     protected void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
-        String id;
-       try {
-          id =request.getParameter("id");
-       }catch (NumberFormatException e){
-           throw new MyServletException("id prodotto non valido");
-       }
-           Prodotto prodotto = prodottoDAO.doRetrieveById(id);
+        String idStr = request.getParameter("id");
+        if (idStr == null)
+            throw new MyServletException("Id non valido");
+
+        int id = Integer.parseInt(idStr);
+        Prodotto prodotto = prodottoDAO.doRetrieveById(id);
         if(prodotto==null){
             throw new MyServletException("Prodotto non trovato");
         }
+
         request.setAttribute("prodotto",prodotto);
 
         RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/prodotto.jsp");

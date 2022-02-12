@@ -22,6 +22,7 @@ public class GestoreProdottoServlet extends HttpServlet {
             throw new MyServletException("Utente non autorizzato");
         }
         String idStr = request.getParameter("id");
+        int id= Integer.parseInt(idStr);
         if(idStr != null) {
             List<Categoria> categorie= (List<Categoria>) getServletContext().getAttribute("categorie");
             if (request.getParameter("rimuovi") != null){
@@ -36,7 +37,7 @@ public class GestoreProdottoServlet extends HttpServlet {
                 String categoria = request.getParameter("addCategoria");
                 if(nome != null && descrizione != null && marca != null && prezzo != null && categoria!=null){
                     prodotto = new Prodotto();
-                    int id= Integer.parseInt(idStr);
+
                     prodotto.setId(id);
                     prodotto.setNome(nome);
                     prodotto.setDescrizione(descrizione);
@@ -63,7 +64,7 @@ public class GestoreProdottoServlet extends HttpServlet {
                         request.setAttribute("notifica", "Prodotto modificato con successo.");
                     }
                 }else{
-                    prodotto = prodottoDAO.doRetrieveById(idStr);
+                    prodotto = prodottoDAO.doRetrieveById(id);
                 }
             request.setAttribute("prodotto", prodotto);
             }

@@ -42,7 +42,7 @@
                 <i>${desc}</i>
             </c:when>
             <c:otherwise>
-                <a href="?id = ${param.id} &perpag = ${perpag}&ord =${o}">${desc}</a>
+                <a href="?id=${param.id}&perpag=${perpag}&ord=${o}">${desc}</a>
             </c:otherwise>
         </c:choose>
         </c:forEach>

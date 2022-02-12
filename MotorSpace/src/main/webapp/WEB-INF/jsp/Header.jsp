@@ -44,8 +44,8 @@
                 <menu>
                     <c:forEach items="${categorie2}" var="categorie2">
                         <menuitem>
-                            <a href="CategoriaParti?id=<c:out value="${categorie2.id}"/>"><c:out
-                                    value="${categorie2.nome}" /></a>
+                            <a href="CategoriaParti?id=<c:out value="${categorie2.id}"/>">
+                                <c:out value="${categorie2.nome}" /></a>
                         </menuitem>
                     </c:forEach>
                 </menu>

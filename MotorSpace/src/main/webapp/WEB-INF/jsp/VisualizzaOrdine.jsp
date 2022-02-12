@@ -10,18 +10,19 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="Header.jsp">
-    <jsp:param name="pageTitle" value="Carrello"/>
+    <jsp:param name="pageTitle" value="Ordine"/>
 </jsp:include>
 <section>
-    <h1>Ordine N."${lineadordine.ordine}</h1>
     <grid>
+        <h1>Ordine N."${id}"</h1>
+
         <c:forEach items="${ordine.prodotti}" var="ordine">
             <div col="1/3">
                 <a href="Prodotto?id=${pq.prodotto.id}"><img src="img/prodotto${pq.prodotto.id}.jpg"></a>
             </div>
             <div col="2/3">
                 <h3>
-                    <a href="Prodotto?id=${pq.prodotto.id}">${pq.prodotto.nome}</a>
+                <a href="Prodotto?id=${pq.prodotto.id}">${pq.prodotto.nome}</a>
                 </h3>
                 <p>${pq.prodotto.descrizione}</p>
                 <h5>Quantità:${pq.quantità}. Prezzo Unit:${pq.prodotto.prezzo}€, Prezzo tot.:${pq.prezzoTot}€</h5>
@@ -46,9 +47,10 @@
             <div col="1/3">
                 <form action="Passo2PagamentoServlet" method = post>
                     <input type="submit" value="Completa acquisto">
-                </form>
+            </form>
             </div>
         </grid>
     </section>
 </c:if>
+
 <%@include file="../footer.html"%>

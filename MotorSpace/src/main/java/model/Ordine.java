@@ -5,7 +5,6 @@ import java.sql.Date;
 public class Ordine {
     int id;
     String cliente;// viene inserito l'username del cliente
-    float prezzo_tot;
     Date dataOrdine;
     Date dataSpedizione;
     Date dataConsegna;
@@ -55,4 +54,6 @@ public class Ordine {
     public void setId(int id) {
         this.id = id;
     }
+
+
 }

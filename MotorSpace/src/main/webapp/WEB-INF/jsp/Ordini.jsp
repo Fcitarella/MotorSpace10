@@ -29,7 +29,7 @@
             <td>${ordine.dataOrdine}</td>
             <td>${ordine.dataSpedizione}</td>
             <td>${ordine.dataConsegna}</td>
-            <td><a href="visualizzaOrdine?id=${ordine.id}" btn primary="Dettagli"/></td>
+            <td><a href="VisualizzaOrdine?id=${ordine.id}" btn primary="Dettagli"/></td>
         </tr>
         </c:forEach>
         </tbody>

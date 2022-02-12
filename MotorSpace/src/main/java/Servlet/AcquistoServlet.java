@@ -41,7 +41,6 @@ public class AcquistoServlet extends HttpServlet {
         int id = ordineDAO.doSave(o);
         LineaOrdine l = new LineaOrdine();
         List<Carrello.ProdottoQuantità> pq = carrello.getProdottiArray();
-        Carrello.ProdottoQuantità prova = pq.get(0);
         LineaOrdineDAO lineaOrdineDAO = new LineaOrdineDAO();
         for(Carrello.ProdottoQuantità p:pq){
 

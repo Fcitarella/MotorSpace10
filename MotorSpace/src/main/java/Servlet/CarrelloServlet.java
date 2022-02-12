@@ -36,7 +36,7 @@ public class CarrelloServlet extends HttpServlet {
                 if(prodQuantità!=null) {
                     prodQuantità.setQuantità(prodQuantità.getQuantità()+ addNum);
                 }else{
-                    carrello.put(prodottoDAO.doRetrieveById(prodIdStr),addNum);
+                    carrello.put(prodottoDAO.doRetrieveById(prodId),addNum);
                 }
             }else{
                 String setNumStr = request.getParameter("setNum");
@@ -49,7 +49,7 @@ public class CarrelloServlet extends HttpServlet {
                         if(prodQuant != null){
                             prodQuant.setQuantità(setNum);
                         }else{
-                            carrello.put(prodottoDAO.doRetrieveById(prodIdStr),setNum);
+                            carrello.put(prodottoDAO.doRetrieveById(prodId),setNum);
                         }
                     }
                 }

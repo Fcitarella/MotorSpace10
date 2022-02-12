@@ -8,7 +8,7 @@ import java.util.List;
 public class ProdottoDAO {
     public enum OrderBy{
         DEFAULT(""), PREZZO_ASC("ORDER BY prezzo ASC"), PREZZO_DESC("ORDER BY prezzo DESC");
-        private String sql;
+        public final String sql;
 
         private OrderBy(String sql){
             this.sql=sql;
@@ -36,10 +36,10 @@ public class ProdottoDAO {
             throw new RuntimeException(e);
         }
     }
-    public Prodotto doRetrieveById(String id){
+    public Prodotto doRetrieveById(int id){
         try(Connection con =ConPool.getConnection()){
             PreparedStatement ps=con.prepareStatement("SELECT prodotto.id,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo FROM prodotto WHERE id=?");
-            ps.setString(1,id);
+            ps.setInt(1,id);
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
                 Prodotto P=new Prodotto();
@@ -114,7 +114,7 @@ public class ProdottoDAO {
     }
     public List<Prodotto> doRetrieveByCategoria(int categoria, OrderBy orderBy, int offset, int limit) {
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT prodotto.id,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo FROM prodotto JOIN categoria ON prodotto.categoria=categoria.id WHERE categoria.id=?"+orderBy.sql+" LIMIT ?,?");
+            PreparedStatement ps = con.prepareStatement("SELECT prodotto.id,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo FROM prodotto, categoria WHERE prodotto.categoria=categoria.id AND categoria.id=? "+orderBy.sql+" LIMIT ?,?");
             ps.setInt(1, categoria);
             ps.setInt(2, offset);
             ps.setInt(3, limit);
