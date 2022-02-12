@@ -53,7 +53,7 @@ public class AcquistoServlet extends HttpServlet {
             carrello.remove(p.getProdotto().getId());
         }
 
-       RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/acquistoform.jsp");
+       RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/Passo2Pagamento.jsp");
         requestDispatcher.forward(request,response);
     }
 

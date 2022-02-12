@@ -13,9 +13,9 @@
     <jsp:param name="pageTitle" value="Carrello"/>
 </jsp:include>
 <section>
-    <h1>Carrello</h1>
+    <h1>Ordine N."${lineadordine.ordine}</h1>
     <grid>
-        <c:forEach items="${carrello.prodotti}" var="pq">
+        <c:forEach items="${ordine.prodotti}" var="ordine">
             <div col="1/3">
                 <a href="Prodotto?id=${pq.prodotto.id}"><img src="img/prodotto${pq.prodotto.id}.jpg"></a>
             </div>
@@ -38,17 +38,17 @@
     </grid>
 </section>
 <c:if test="${not empty carrello.prodotti}">
-<section>
-    <grid>
-     <div col="1/3">
-         <h2>Totale:${carrello.prezzoTot}</h2>
-    </div>
-    <div col="1/3">
-        <form action="Passo2PagamentoServlet" method = post>
-            <input type="submit" value="Completa acquisto">
-         </form>
-    </div>
-    </grid>
-</section>
+    <section>
+        <grid>
+            <div col="1/3">
+                <h2>Totale:${carrello.prezzoTot}</h2>
+            </div>
+            <div col="1/3">
+                <form action="Passo2PagamentoServlet" method = post>
+                    <input type="submit" value="Completa acquisto">
+                </form>
+            </div>
+        </grid>
+    </section>
 </c:if>
 <%@include file="../footer.html"%>
